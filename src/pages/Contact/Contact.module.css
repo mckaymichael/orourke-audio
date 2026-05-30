@@ -1,0 +1,131 @@
+.page {
+  padding-top: 72px;
+  padding-block: var(--space-20) var(--space-24);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: var(--space-20);
+  align-items: start;
+  padding-top: var(--space-16);
+}
+
+/* ── Context ───────────────────────────── */
+.intro {
+  color: var(--color-mid-grey);
+  line-height: 1.8;
+  max-width: 42ch;
+  margin-bottom: var(--space-10);
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-size: var(--text-sm);
+  color: var(--color-white);
+}
+
+.detailLabel {
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+}
+
+/* ── Form ──────────────────────────────── */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.label {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-mid-grey);
+}
+
+.input {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3) var(--space-4);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  transition: border-color var(--transition);
+  width: 100%;
+  resize: vertical;
+}
+
+.input::placeholder {
+  color: var(--color-mid-grey);
+  opacity: 0.6;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+select.input {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239a8a8c' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-4) center;
+  padding-right: var(--space-10);
+}
+
+select.input option {
+  background-color: var(--color-surface);
+}
+
+.submit {
+  align-self: flex-start;
+}
+
+.errorMsg {
+  font-size: var(--text-sm);
+  color: var(--color-secondary);
+}
+
+/* ── Success ───────────────────────────── */
+.successMsg {
+  padding: var(--space-10);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  color: var(--color-white);
+}
+
+.successLabel {
+  font-size: var(--text-sm);
+  color: var(--color-primary);
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 768px) {
+  .layout { grid-template-columns: 1fr; }
+  .row    { grid-template-columns: 1fr; }
+}

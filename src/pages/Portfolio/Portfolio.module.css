@@ -1,0 +1,103 @@
+.page {
+  padding-top: 72px;
+  padding-block: var(--space-20) var(--space-24);
+}
+
+.header {
+  padding-block: var(--space-16) var(--space-12);
+}
+
+.filters {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-12);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--space-4);
+}
+
+.filterBtn {
+  background: none;
+  border: none;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-mid-grey);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  transition: color var(--transition), background var(--transition);
+}
+
+.filterBtn:hover {
+  color: var(--color-white);
+}
+
+.filterActive {
+  color: var(--color-primary) !important;
+  background-color: rgba(204, 29, 35, 0.12);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: var(--space-6);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.audioWrap {
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.audio {
+  width: 100%;
+  accent-color: var(--color-primary);
+}
+
+.cardBody {
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex: 1;
+}
+
+.cat {
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+}
+
+.cardTitle {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--color-white);
+}
+
+.cardDesc {
+  font-size: var(--text-sm);
+  color: var(--color-mid-grey);
+  line-height: 1.7;
+}
+
+.cardDesc p { margin: 0; }
+
+.year {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-mid-grey);
+  margin-top: auto;
+}
+
+.state {
+  color: var(--color-mid-grey);
+  font-size: var(--text-sm);
+  padding: var(--space-12) 0;
+}
