@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import Nav from './components/Nav/Nav.jsx'
+import BottomNav from './components/BottomNav/BottomNav.jsx'
 import Footer from './components/Footer/Footer.jsx'
 import Home from './pages/Home/Home.jsx'
 import Portfolio from './pages/Portfolio/Portfolio.jsx'
@@ -10,8 +11,9 @@ import NotFound from './pages/NotFound.jsx'
 export default function App() {
   return (
     <>
+      <a href="#main-content" className="skip-link">Skip to content</a>
       <Nav />
-      <main>
+      <main id="main-content" className="main-content">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/portfolio" element={<Portfolio />} />
@@ -21,6 +23,7 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
+      <BottomNav />
     </>
   )
 }

@@ -7,70 +7,42 @@ export default function Home() {
 
       {/* ── Hero ──────────────────────────────────────────────── */}
       <section className={styles.hero}>
-        {/* Decorative angular light slashes — ref image inspired */}
-        <div className={styles.heroSlash}  aria-hidden="true" />
-        <div className={styles.heroSlash2} aria-hidden="true" />
         <div className={`container ${styles.heroInner}`}>
 
           <div className={styles.heroText}>
             <p className={styles.eyebrow}>
               <span className={styles.eyebrowDot} />
-              Vancouver, BC · Sound Design · Score · Post
+              Vancouver · Sound Design and Original Score for Film
             </p>
 
             <h1 className={styles.heroTitle}>
-              Your film will sound<br />
-              <span className={styles.heroAccent}>as intentional</span><br />
+              Your film will sound
+              as intentional
               as it looks.
             </h1>
 
             <p className={styles.heroSub}>
-              Most sound designers think in effects. Ryan thinks in music.
-              Sound design and original score from a single creative voice —
-              no handoffs, no tonal drift, no extra vendor to manage.
+              Sound design that feels like it was always part of your film.
+              Ryan composes original music and designs sound, so your score
+              and your sound world stay tonally cohesive. One collaborator, start to finish.
             </p>
 
-            <div className={styles.heroCtas}>
-              <Link to="/portfolio" className="btn btn-primary">Hear the Work</Link>
-              <Link to="/contact" className="btn btn-outline">Start a Project</Link>
-            </div>
-
-            {/* Free master offer — in hero, above the fold */}
-            <div className={styles.freeMaster}>
-              <div className={styles.freeMasterBadge}>Free</div>
-              <p className={styles.freeMasterText}>
-                <strong>Send me one track. I'll master it — no strings attached.</strong>{' '}
-                Hear the difference before you commit to anything.{' '}
-                <Link to="/contact" className={styles.freeMasterLink}>
-                  Claim your free master →
-                </Link>
-              </p>
-            </div>
-          </div>
-
-          {/* Demo reel — no clicks required */}
-          <div className={styles.heroPlayer}>
-            <div className={styles.playerHeader}>
-              <span className={styles.playerDot} />
-              <span className={styles.playerDot} />
-              <span className={styles.playerDot} />
-              <span className={styles.playerTitle}>Demo Reel — 2024</span>
-            </div>
-            <div className={styles.playerBody}>
-              <p className={styles.playerLabel}>Ryan O'Rourke Audio</p>
+            {/* Compact inline audio player */}
+            <div className={styles.inlinePlayer}>
+              <span className={styles.inlinePlayerLabel}>Demo Reel 2024</span>
               <audio
                 controls
                 className={styles.audio}
                 preload="metadata"
                 aria-label="Ryan O'Rourke demo reel 2024"
               >
-                {/* TODO: Replace with real URL from WordPress ACF field */}
                 <source src="/audio/demo-reel-2024.mp3" type="audio/mpeg" />
-                Your browser does not support the audio element.
               </audio>
-              <p className={styles.playerMeta}>
-                Sound Design · Foley · Original Score · Mix
-              </p>
+            </div>
+
+            <div className={styles.heroCtas}>
+              <Link to="/portfolio" className="btn btn-primary">Hear the Work</Link>
+              <Link to="/contact" className="btn btn-outline">Discuss Your Film</Link>
             </div>
           </div>
 
@@ -84,20 +56,21 @@ export default function Home() {
             {[
               {
                 label: '01',
-                title: 'One collaborator.\nComplete audio.',
-                body: 'Sound design, foley, original score, and final mix — from a single creative voice. No handoffs, no vendor coordination, no tonal inconsistency between the music and the effects.',
+                title: 'Composer and\nsound designer.',
+                body: "Ryan writes original music and designs sound — a crossover most productions have to split between two people. When the score and the effects come from the same person, the film sounds like it was always meant to sound that way.",
               },
               {
                 label: '02',
-                title: "A musician's ear\nin the mix.",
-                body: "Ryan composes original music and designs sound — a rare crossover. When the score and the sound design come from the same person, the film sounds like it was always meant to sound that way.",
+                title: 'He listens to\nthe story.',
+                body: 'A technically trained engineer with a musician\'s instincts. Ryan approaches every project with emotional intent — building a sonic world that serves the narrative, not just fills the silence.',
               },
               {
                 label: '03',
-                title: 'Built for indie\nbudgets.',
-                body: 'No "call for a quote" games. Rates are on the page. Ryan works lean — home studio discipline, broadcast-ready output, real-world indie timelines. No studio overhead passed on to you.',
+                title: 'Built for indie\nproductions.',
+                body: 'Rates are on the page. Ryan works lean — home studio discipline, broadcast-ready deliverables, real-world indie timelines. No studio overhead, no runaround.',
               },
             ].map(({ label, title, body }) => (
+
               <div key={label} className={styles.diffCard}>
                 <span className={styles.diffLabel}>{label}</span>
                 <h2 className={styles.diffTitle}>{title}</h2>
@@ -122,9 +95,9 @@ export default function Home() {
           {/* TODO: Replace with live data from usePortfolio(featured=true) */}
           <div className={styles.workGrid}>
             {[
-              { cat: 'Sound Design', title: 'Project Title', desc: 'Complete sonic world built from scratch — atmosphere, tension, and impact.' },
-              { cat: 'Original Score', title: 'Project Title', desc: 'Full original music composition delivered as stems for editorial flexibility.' },
-              { cat: 'Foley & SFX', title: 'Project Title', desc: 'Original and library-based effects tailored to picture, edited with precision.' },
+              { cat: 'Sound Design', title: 'Project Title', desc: 'Built the full sonic environment from scratch — every layer designed to deepen the tension of the scene.' },
+              { cat: 'Original Score', title: 'Project Title', desc: 'Original score composed and delivered as stems, giving the editor full control over the emotional arc.' },
+              { cat: 'Foley & SFX', title: 'Project Title', desc: 'Custom foley recorded to picture, every effect chosen to keep the audience inside the world of the film.' },
             ].map((item) => (
               <article key={item.cat} className={`card ${styles.workCard}`}>
                 <div className={styles.workAudio} aria-hidden="true" />
@@ -139,28 +112,26 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Free Master CTA ──────────────────────────────── */}
+      {/* ── Inquiry CTA ──────────────────────────────── */}
       <section className={styles.masterSection}>
         <div className="container">
           <div className={styles.masterInner}>
             <div className={styles.masterText}>
-              <p className={`section-label ${styles.masterLabel}`}>Risk-Free</p>
+              <p className={`section-label ${styles.masterLabel}`}>Get in Touch</p>
               <h2 className={styles.masterTitle}>
-                No Commitments.<br />Just Listen.<br /> First One's On Me.
+                Tell me about<br />your project.
               </h2>
               <p className={styles.masterBody}>
-                Send me any track. I'll return a mastered version — free, no pitch, no invoice,
-                no obligation. If it sounds better, we can talk. That's the whole offer.
-              </p>
-              <p className={styles.masterSubtext}>
-                I'm confident enough in the result to do the first one for free.
+                Whether you are in pre-production or already in the edit, it is never too early
+                to talk about sound. Describe what you are making and Ryan will get back to you
+                within 24 hours.
               </p>
             </div>
             <div className={styles.masterCta}>
               <Link to="/contact" className={`btn btn-primary ${styles.masterBtn}`}>
-                Claim Your Free Master
+                Start the Conversation
               </Link>
-              <p className={styles.masterNote}>No account. No credit card. Just send the track.</p>
+              <p className={styles.masterNote}>Based in Vancouver. Available remotely across Canada.</p>
             </div>
           </div>
         </div>
@@ -172,10 +143,10 @@ export default function Home() {
           <p className="section-label">Why Ryan</p>
           <div className={styles.proofGrid}>
             {[
-              { value: '5+', label: 'Audio disciplines' },
-              { value: '1', label: 'Point of contact' },
-              { value: '$0', label: 'First master' },
-              { value: '24h', label: 'Response time' },
+              { value: 'Score +\nSound', label: 'Both disciplines, one hire' },
+              { value: 'Indie', label: 'Built for your budget' },
+              { value: 'Local', label: 'Vancouver-based, remote-ready' },
+              { value: '24h', label: 'Response on every inquiry' },
             ].map(({ value, label }) => (
               <div key={label} className={styles.proofStat}>
                 <span className={styles.proofValue}>{value}</span>

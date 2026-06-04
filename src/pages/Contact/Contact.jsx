@@ -14,19 +14,12 @@ const PROJECT_TYPES = [
 
 const BUDGET_RANGES = [
   'Under $500',
-  '$500 – $1,500',
-  '$1,500 – $5,000',
+  '$500 - $1,500',
+  '$1,500 - $5,000',
   '$5,000+',
   'Not sure yet',
 ]
 
-/**
- * CONTACT / BOOKING PAGE
- *
- * Simple, low-friction inquiry form.
- * Submits to Contact Form 7 via REST API.
- * Form ID is set in .env (VITE_CF7_FORM_ID).
- */
 export default function Contact() {
   const [formData, setFormData] = useState({
     name:        '',
@@ -35,7 +28,7 @@ export default function Contact() {
     budget:      '',
     message:     '',
   })
-  const [status, setStatus] = useState('idle') // idle | loading | success | error
+  const [status, setStatus] = useState('idle')
 
   function handleChange(e) {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
@@ -60,15 +53,13 @@ export default function Contact() {
     <div className={styles.page}>
       <div className="container">
         <div className={styles.layout}>
-          {/* Left: context */}
           <div className={styles.context}>
             <p className="section-label">Get in Touch</p>
             <h1 className="section-title">Start a Project</h1>
             <p className={styles.intro}>
-              Tell me about your project. I'll get back to you within 24 hours
+              Tell me about your project. I&#39;ll get back to you within 24 hours
               with availability and a rough sense of scope.
             </p>
-
             <div className={styles.details}>
               <div className={styles.detail}>
                 <span className={`font-mono ${styles.detailLabel}`}>Location</span>
@@ -85,55 +76,22 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Right: form */}
           <div className={styles.formWrap}>
             {status === 'success' ? (
               <div className={`card ${styles.successMsg}`}>
-                <p className={`font-mono ${styles.successLabel}`}>✓ Message sent</p>
-                <p>Thanks — I'll be in touch within 24 hours.</p>
+                <p className={`font-mono ${styles.successLabel}`}>&#10003; Message sent</p>
+                <p>Thanks &#8212; I&#39;ll be in touch within 24 hours.</p>
               </div>
             ) : (
-              <form
-                className={styles.form}
-                onSubmit={handleSubmit}
-                noValidate
-              >
+              <form className={styles.form} onSubmit={handleSubmit} noValidate>
                 <div className={styles.row}>
-                  <Field
-                    label="Your Name"
-                    name="name"
-                    type="text"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                  />
-                  <Field
-                    label="Email Address"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                  />
+                  <Field label="Your Name" name="name" type="text" value={formData.name} onChange={handleChange} required />
+                  <Field label="Email Address" name="email" type="email" value={formData.email} onChange={handleChange} required />
                 </div>
-
                 <div className={styles.row}>
-                  <SelectField
-                    label="Project Type"
-                    name="projectType"
-                    value={formData.projectType}
-                    onChange={handleChange}
-                    options={PROJECT_TYPES}
-                  />
-                  <SelectField
-                    label="Budget Range"
-                    name="budget"
-                    value={formData.budget}
-                    onChange={handleChange}
-                    options={BUDGET_RANGES}
-                  />
+                  <SelectField label="Project Type" name="projectType" value={formData.projectType} onChange={handleChange} options={PROJECT_TYPES} />
+                  <SelectField label="Budget Range" name="budget" value={formData.budget} onChange={handleChange} options={BUDGET_RANGES} />
                 </div>
-
                 <Field
                   label="Tell me about your project"
                   name="message"
@@ -141,22 +99,23 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  placeholder="Genre, timeline, what you're looking for audio-wise…"
+                  placeholder="Genre, timeline, what you&#39;re looking for audio-wise..."
                   rows={5}
                 />
-
-                {status === 'error' && (
-                  <p className={styles.errorMsg}>
-                    Something went wrong. Try emailing directly instead.
-                  </p>
-                )}
-
+                <div role="alert" aria-live="assertive" aria-atomic="true">
+                  {status === 'error' && (
+                    <p className={styles.errorMsg}>
+                      Something went wrong. Try emailing directly instead.
+                    </p>
+                  )}
+                </div>
                 <button
                   type="submit"
                   className={`btn btn-primary ${styles.submit}`}
                   disabled={status === 'loading'}
+                  aria-busy={status === 'loading'}
                 >
-                  {status === 'loading' ? 'Sending…' : 'Send Inquiry'}
+                  {status === 'loading' ? 'Sending...' : 'Send Inquiry'}
                 </button>
               </form>
             )}
@@ -202,14 +161,8 @@ function SelectField({ label, name, value, onChange, options }) {
   return (
     <div className={styles.field}>
       <label htmlFor={name} className={styles.label}>{label}</label>
-      <select
-        id={name}
-        name={name}
-        value={value}
-        onChange={onChange}
-        className={styles.input}
-      >
-        <option value="">Select…</option>
+      <select id={name} name={name} value={value} onChange={onChange} className={styles.input}>
+        <option value="">Select...</option>
         {options.map(opt => (
           <option key={opt} value={opt}>{opt}</option>
         ))}

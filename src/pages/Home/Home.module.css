@@ -10,71 +10,36 @@
   padding-block: var(--space-32);
   position: relative;
   overflow: hidden;
-  background-color: #121010;
+  background-color: #121010; /* fallback while image loads */
+  background-image: url('/src/images/Hero.png');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
 }
 
-/* Brand texture: red-to-black gradient with layered depth */
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 65% 85% at 108% 5%,  #E8181F 0%, rgba(232,24,31,0.7) 20%, rgba(232,24,31,0.2) 45%, transparent 65%),
-    radial-gradient(ellipse 40% 50% at 95% -5%,  rgba(255,255,255,0.07) 0%, transparent 40%),
-    radial-gradient(ellipse 30% 30% at 5%  95%,  rgba(232,24,31,0.18) 0%, transparent 60%),
-    linear-gradient(150deg, #121010 0%, #121010 100%);
-  pointer-events: none;
-}
-
-
-/* Decorative diagonal slash — like the angular light form in the reference */
-.heroSlash {
-  position: absolute;
-  top: -10%;
-  right: 8%;
-  width: 2px;
-  height: 140%;
-  background: linear-gradient(180deg, transparent 0%, rgba(232,24,31,0.9) 25%, rgba(247,240,241,0.4) 48%, rgba(247,240,241,0.15) 52%, rgba(232,24,31,0.6) 72%, transparent 100%);
-  transform: rotate(-18deg);
-  transform-origin: top center;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.heroSlash2 {
-  position: absolute;
-  top: -10%;
-  right: 11.5%;
-  width: 1px;
-  height: 120%;
-  background: linear-gradient(180deg, transparent 0%, rgba(232,24,31,0.5) 35%, rgba(232,105,108,0.25) 60%, transparent 100%);
-  transform: rotate(-18deg);
-  transform-origin: top center;
-  pointer-events: none;
-  z-index: 1;
-  filter: blur(2px);
-}
 
 .heroInner {
   position: relative;
   z-index: 2;
-  display: grid;
-  grid-template-columns: 1fr 400px;
-  gap: var(--space-16);
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  text-align: center;
 }
 
 /* ── Hero Text ── */
 .eyebrow {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: var(--space-3);
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-secondary);
-  margin-bottom: var(--space-6);
+  margin: 0 0 var(--space-6);
+  padding: 0;
 }
 
 .eyebrowDot {
@@ -97,7 +62,8 @@
   font-weight: 900;
   line-height: 1.05;
   color: var(--color-white);
-  margin-bottom: var(--space-6);
+  margin: 0 0 var(--space-6);
+  padding: 0;
   letter-spacing: -0.02em;
 }
 
@@ -113,8 +79,9 @@
 .heroSub {
   font-size: var(--text-lg);
   color: var(--color-mid-grey);
-  max-width: 46ch;
-  margin-bottom: var(--space-8);
+  max-width: 52ch;
+  margin: 0 auto var(--space-8);
+  padding: 0;
   line-height: 1.75;
 }
 
@@ -122,6 +89,7 @@
   display: flex;
   gap: var(--space-4);
   flex-wrap: wrap;
+  justify-content: center;
   margin-bottom: var(--space-8);
 }
 
@@ -166,71 +134,27 @@
 }
 .freeMasterLink:hover { color: var(--color-white); }
 
-/* ── Hero Player (terminal-style) ── */
-.heroPlayer {
-  background-color: rgba(18, 16, 16, 0.7);
-  border: 1px solid rgba(247, 240, 241, 0.12);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  backdrop-filter: blur(16px);
-  box-shadow:
-    0 32px 80px rgba(0, 0, 0, 0.6),
-    0 0 0 1px rgba(204,29,35,0.15),
-    inset 0 1px 0 rgba(247,240,241,0.06);
-}
-
-.playerHeader {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-3) var(--space-5);
-  background-color: rgba(0,0,0,0.3);
-  border-bottom: 1px solid rgba(247,240,241,0.06);
-}
-
-.playerDot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background-color: rgba(247,240,241,0.15);
-  flex-shrink: 0;
-}
-
-.playerTitle {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  color: var(--color-mid-grey);
-  margin-left: var(--space-2);
-  text-transform: uppercase;
-}
-
-.playerBody {
-  padding: var(--space-6);
+/* ── Inline Audio Player ── */
+.inlinePlayer {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-8);
 }
 
-.playerLabel {
-  font-family: var(--font-heading);
-  font-size: var(--text-sm);
-  font-weight: 700;
-  color: var(--color-white);
-  letter-spacing: 0.05em;
+.inlinePlayerLabel {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
 }
 
 .audio {
-  width: 100%;
+  width: 280px;
+  height: 32px;
   accent-color: var(--color-primary);
-}
-
-.playerMeta {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: var(--color-secondary);
-  text-transform: uppercase;
 }
 
 /* ── Differentiator ──────────────────────────────────── */
@@ -437,7 +361,7 @@
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.1em;
-  color: #7a6062;
+  color: #5a4547; /* upgraded from #7a6062 — now passes 4.5:1 on light bg */
   text-align: center;
   text-transform: uppercase;
 }
@@ -486,8 +410,6 @@
 
 /* ── Responsive ─────────────────────────────────────── */
 @media (max-width: 1024px) {
-  .heroInner        { grid-template-columns: 1fr; }
-  .heroPlayer       { max-width: 480px; }
   .diffGrid         { grid-template-columns: 1fr; }
   .workGrid         { grid-template-columns: 1fr 1fr; }
   .masterInner      { grid-template-columns: 1fr; }
