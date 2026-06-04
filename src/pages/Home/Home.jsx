@@ -1,5 +1,6 @@
 import styles from './Home.module.css'
 import { Link } from 'react-router-dom'
+import WaveStack from '../../components/WaveStack/WaveStack'
 
 export default function Home() {
   return (
@@ -7,6 +8,7 @@ export default function Home() {
 
       {/* ── Hero ──────────────────────────────────────────────── */}
       <section className={styles.hero}>
+        <WaveStack />
         <div className={`container ${styles.heroInner}`}>
 
           <div className={styles.heroText}>
