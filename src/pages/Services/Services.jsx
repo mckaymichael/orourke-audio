@@ -21,7 +21,7 @@ export default function Services() {
           <p className="section-label">What I Offer</p>
           <h1 className="section-title">Services</h1>
           <p className="section-body">
-            Transparent, project-based pricing for film, video, and interactive media.
+            Transparent, project-based pricing for games and interactive media.
             Every engagement includes unlimited revisions within scope.
           </p>
 
@@ -52,21 +52,20 @@ export default function Services() {
           <div className={styles.aboutGrid}>
             <div className={styles.aboutText}>
               <p className="section-label">About</p>
-              <h2 className="section-title">A musician's ear.<br />An engineer's precision.</h2>
+              <h2 className="section-title">A musician's ear.<br />Built for games.</h2>
               <p className={styles.bio}>
-                Ryan O'Rourke is a Vancouver-based sound designer, engineer, and composer
-                with roots in music production and a focus on film and media. He brings
-                the rare ability to design a complete sonic world <em>and</em> score it —
-                from first sound effect to final mix.
+                Ryan O'Rourke is a Vancouver-based composer with roots in music production
+                and a focus on interactive media. He writes original music that serves the
+                game — whether that is an expansive orchestral OST, a looping ambient set,
+                or a single main theme that carries the whole identity of the project.
               </p>
               <p className={styles.bio}>
-                His home studio background isn't a limitation — it's proof he knows how
-                to produce broadcast-ready audio on a lean budget, exactly what independent
-                productions need.
+                His home studio background is a feature, not a limitation. It means lean
+                overhead, real timelines, and a composer who communicates like a collaborator
+                rather than a vendor.
               </p>
               <p className={styles.bio}>
-                Available for remote sessions via Source-Connect, and for on-set and
-                studio work throughout Metro Vancouver.
+                Based in Vancouver. Available remotely for studios worldwide.
               </p>
               <Link to="/contact" className={`btn btn-outline ${styles.aboutCta}`}>
                 Work with Ryan →
@@ -131,28 +130,28 @@ function ServiceCard({ service }) {
 function ServicesFallback() {
   const fallback = [
     {
-      title: 'Sound Design',
-      tagline: 'Complete sonic worlds built from scratch',
-      price: '$800',
-      features: ['Atmosphere & ambience', 'Transitions & impacts', 'Custom SFX library'],
-    },
-    {
-      title: 'Foley & SFX',
-      tagline: 'Original and library sound effects, tailored to picture',
-      price: '$600',
-      features: ['Footsteps & cloth', 'Props & environment', 'Spot effects edited to cut'],
-    },
-    {
-      title: 'Original Score',
-      tagline: 'Full music production in any genre, delivered as stems',
+      title: 'Original Soundtrack',
+      tagline: 'A full score written for your game, start to finish',
       price: '$1,200',
-      features: ['Temp-track replacement', 'Stem delivery for re-edit flexibility', 'Dolby-compliant masters'],
+      features: ['Original composition in any genre', 'Stem delivery for adaptive implementation', 'Loop-ready formatting', 'Unlimited revisions within scope'],
     },
     {
-      title: 'Audio Editing & Mix',
-      tagline: 'Dialogue, ADR, music mix, and broadcast deliverables',
-      price: '$500',
-      features: ['Dialogue cleanup & noise reduction', 'ADR support', 'Streaming & broadcast spec output'],
+      title: 'Main Theme & Key Cues',
+      tagline: 'The musical identity your game leads with',
+      price: '$600',
+      features: ['Main theme with motif development', 'Title screen, victory, and game-over variants', 'Mixed and mastered master files', 'Stem delivery on request'],
+    },
+    {
+      title: 'Ambient & Loop Packs',
+      tagline: 'Seamless background music for every zone and mood',
+      price: '$400',
+      features: ['Seamlessly looping tracks', 'Biome or mood-matched sets', 'Multiple intensity layers', 'Engine-agnostic file formats'],
+    },
+    {
+      title: 'Cinematic & Trailer Score',
+      tagline: 'Music that sells the moment before the game ships',
+      price: '$800',
+      features: ['Synced to picture', 'Orchestral, electronic, or hybrid', 'Full mixed master + stems', 'Revision rounds included'],
     },
   ]
 

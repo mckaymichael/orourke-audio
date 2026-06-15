@@ -3,12 +3,12 @@ import { submitContactForm } from '../../api/wp.js'
 import styles from './Contact.module.css'
 
 const PROJECT_TYPES = [
-  'Short Film',
-  'Feature Film',
-  'Commercial / Branded Video',
-  'Trailer',
-  'Game Audio',
-  'Podcast',
+  'Indie Game',
+  'Mobile Game',
+  'AAA / Mid-sized Studio',
+  'VR / AR Experience',
+  'Game Trailer / Cinematic',
+  'Interactive Installation',
   'Other',
 ]
 
@@ -57,7 +57,7 @@ export default function Contact() {
             <p className="section-label">Get in Touch</p>
             <h1 className="section-title">Start a Project</h1>
             <p className={styles.intro}>
-              Tell me about your project. I&#39;ll get back to you within 24 hours
+              Tell me about your game. I&#39;ll get back to you within 24 hours
               with availability and a rough sense of scope.
             </p>
             <div className={styles.details}>
@@ -67,7 +67,7 @@ export default function Contact() {
               </div>
               <div className={styles.detail}>
                 <span className={`font-mono ${styles.detailLabel}`}>Remote</span>
-                <span>Source-Connect, Zoom, Google Meet</span>
+                <span>Zoom, Google Meet, Discord</span>
               </div>
               <div className={styles.detail}>
                 <span className={`font-mono ${styles.detailLabel}`}>Response</span>
@@ -93,13 +93,13 @@ export default function Contact() {
                   <SelectField label="Budget Range" name="budget" value={formData.budget} onChange={handleChange} options={BUDGET_RANGES} />
                 </div>
                 <Field
-                  label="Tell me about your project"
+                  label="Tell me about your game"
                   name="message"
                   type="textarea"
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  placeholder="Genre, timeline, what you&#39;re looking for audio-wise..."
+                  placeholder="Genre, art style, timeline, what kind of music you&#39;re envisioning..."
                   rows={5}
                 />
                 <div role="alert" aria-live="assertive" aria-atomic="true">

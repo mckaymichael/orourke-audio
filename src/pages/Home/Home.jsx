@@ -14,29 +14,29 @@ export default function Home() {
           <div className={styles.heroText}>
             <p className={styles.eyebrow}>
               <span className={styles.eyebrowDot} />
-              Vancouver · Sound Design and Original Score for Film
+              Vancouver · Original Music for Games
             </p>
 
             <h1 className={styles.heroTitle}>
-              Your film will sound
-              as intentional
-              as it looks.
+              Your game deserves<br />
+              music built
+              for it.
             </h1>
 
             <p className={styles.heroSub}>
-              Sound design that feels like it was always part of your film.
-              Ryan composes original music and designs sound, so your score
-              and your sound world stay tonally cohesive. One collaborator, start to finish.
+              Original soundtracks, adaptive stems, and main themes composed
+              specifically for your game. Ryan brings a musician's instincts to
+              every project — music that feels like it grew out of the world you built.
             </p>
 
             {/* Compact inline audio player */}
             <div className={styles.inlinePlayer}>
-              <span className={styles.inlinePlayerLabel}>Demo Reel 2024</span>
+              <span className={styles.inlinePlayerLabel}>Composition Reel 2024</span>
               <audio
                 controls
                 className={styles.audio}
                 preload="metadata"
-                aria-label="Ryan O'Rourke demo reel 2024"
+                aria-label="Ryan O'Rourke composition reel 2024"
               >
                 <source src="/audio/demo-reel-2024.mp3" type="audio/mpeg" />
               </audio>
@@ -44,7 +44,7 @@ export default function Home() {
 
             <div className={styles.heroCtas}>
               <Link to="/portfolio" className="btn btn-primary">Hear the Work</Link>
-              <Link to="/contact" className="btn btn-outline">Discuss Your Film</Link>
+              <Link to="/contact" className="btn btn-outline">Discuss Your Game</Link>
             </div>
           </div>
 
@@ -58,18 +58,18 @@ export default function Home() {
             {[
               {
                 label: '01',
-                title: 'Composer and\nsound designer.',
-                body: "Ryan writes original music and designs sound — a crossover most productions have to split between two people. When the score and the effects come from the same person, the film sounds like it was always meant to sound that way.",
+                title: 'Music that fits\nthe world.',
+                body: "Ryan composes original music — not stock tracks, not temp-music swaps. Every piece is built around your game's tone, pacing, and emotional arc. The soundtrack feels inevitable because it was written for your game specifically.",
               },
               {
                 label: '02',
-                title: 'He listens to\nthe story.',
-                body: 'A technically trained engineer with a musician\'s instincts. Ryan approaches every project with emotional intent — building a sonic world that serves the narrative, not just fills the silence.',
+                title: 'Stems ready\nfor your pipeline.',
+                body: 'Deliverables come as stems and loops formatted for your engine. Whether you are working in Unity, Unreal, or a custom setup, Ryan structures the audio so your team can drop it in and adapt it without extra back-and-forth.',
               },
               {
                 label: '03',
-                title: 'Built for indie\nproductions.',
-                body: 'Rates are on the page. Ryan works lean — home studio discipline, broadcast-ready deliverables, real-world indie timelines. No studio overhead, no runaround.',
+                title: 'Built for indie\nstudios.',
+                body: 'Transparent pricing, clear scope, real timelines. Ryan works lean and communicates openly — no studio overhead, no runaround. You know what you are getting before the project starts.',
               },
             ].map(({ label, title, body }) => (
 
@@ -89,7 +89,7 @@ export default function Home() {
           <div className={styles.workHeader}>
             <div>
               <p className="section-label">Selected Work</p>
-              <h2 className="section-title">Recent Projects</h2>
+              <h2 className="section-title">Recent Compositions</h2>
             </div>
             <Link to="/portfolio" className="btn btn-outline">View Full Portfolio →</Link>
           </div>
@@ -97,9 +97,9 @@ export default function Home() {
           {/* TODO: Replace with live data from usePortfolio(featured=true) */}
           <div className={styles.workGrid}>
             {[
-              { cat: 'Sound Design', title: 'Project Title', desc: 'Built the full sonic environment from scratch — every layer designed to deepen the tension of the scene.' },
-              { cat: 'Original Score', title: 'Project Title', desc: 'Original score composed and delivered as stems, giving the editor full control over the emotional arc.' },
-              { cat: 'Foley & SFX', title: 'Project Title', desc: 'Custom foley recorded to picture, every effect chosen to keep the audience inside the world of the film.' },
+              { cat: 'Main Theme', title: 'Project Title', desc: 'Composed a main theme that sets the emotional tone from the first screen — with a motif that carries through the full soundtrack.' },
+              { cat: 'Ambient Loops', title: 'Project Title', desc: 'Seamlessly looping ambient tracks for exploration areas, each one shaped to the visual mood of the zone.' },
+              { cat: 'Original Soundtrack', title: 'Project Title', desc: 'Full OST composed and delivered as stems — giving the team flexibility to layer and adapt the music as the game evolved.' },
             ].map((item) => (
               <article key={item.cat} className={`card ${styles.workCard}`}>
                 <div className={styles.workAudio} aria-hidden="true" />
@@ -121,19 +121,19 @@ export default function Home() {
             <div className={styles.masterText}>
               <p className={`section-label ${styles.masterLabel}`}>Get in Touch</p>
               <h2 className={styles.masterTitle}>
-                Tell me about<br />your project.
+                Tell me about<br />your game.
               </h2>
               <p className={styles.masterBody}>
-                Whether you are in pre-production or already in the edit, it is never too early
-                to talk about sound. Describe what you are making and Ryan will get back to you
-                within 24 hours.
+                Early in development or deep in production — it is never too early
+                to talk about music. Describe what you are building and Ryan will
+                get back to you within 24 hours.
               </p>
             </div>
             <div className={styles.masterCta}>
               <Link to="/contact" className={`btn btn-primary ${styles.masterBtn}`}>
                 Start the Conversation
               </Link>
-              <p className={styles.masterNote}>Based in Vancouver. Available remotely across Canada.</p>
+              <p className={styles.masterNote}>Based in Vancouver. Available remotely worldwide.</p>
             </div>
           </div>
         </div>
@@ -145,9 +145,9 @@ export default function Home() {
           <p className="section-label">Why Ryan</p>
           <div className={styles.proofGrid}>
             {[
-              { value: 'Score +\nSound', label: 'Both disciplines, one hire' },
-              { value: 'Indie', label: 'Built for your budget' },
-              { value: 'Local', label: 'Vancouver-based, remote-ready' },
+              { value: 'Original', label: 'Written for your game, not licensed' },
+              { value: 'Stems', label: 'Implementation-ready deliverables' },
+              { value: 'Remote', label: 'Vancouver-based, available worldwide' },
               { value: '24h', label: 'Response on every inquiry' },
             ].map(({ value, label }) => (
               <div key={label} className={styles.proofStat}>
