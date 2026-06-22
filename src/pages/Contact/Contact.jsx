@@ -2,31 +2,11 @@ import { useState } from 'react'
 import { submitContactForm } from '../../api/wp.js'
 import styles from './Contact.module.css'
 
-const PROJECT_TYPES = [
-  'Indie Game',
-  'Mobile Game',
-  'AAA / Mid-sized Studio',
-  'VR / AR Experience',
-  'Game Trailer / Cinematic',
-  'Interactive Installation',
-  'Other',
-]
-
-const BUDGET_RANGES = [
-  'Under $500',
-  '$500 - $1,500',
-  '$1,500 - $5,000',
-  '$5,000+',
-  'Not sure yet',
-]
-
 export default function Contact() {
   const [formData, setFormData] = useState({
-    name:        '',
-    email:       '',
-    projectType: '',
-    budget:      '',
-    message:     '',
+    name:    '',
+    email:   '',
+    message: '',
   })
   const [status, setStatus] = useState('idle')
 
@@ -54,11 +34,11 @@ export default function Contact() {
       <div className="container">
         <div className={styles.layout}>
           <div className={styles.context}>
-            <p className="section-label">Get in Touch</p>
-            <h1 className="section-title">Start a Project</h1>
+            <p className="section-label">Contact</p>
+            <h1 className="section-title">Say hello.</h1>
             <p className={styles.intro}>
-              Tell me about your game. I&#39;ll get back to you within 24 hours
-              with availability and a rough sense of scope.
+              Whether you want to give feedback on his work, talk about
+              a project, or just connect — Ryan is easy to reach.
             </p>
             <div className={styles.details}>
               <div className={styles.detail}>
@@ -80,7 +60,7 @@ export default function Contact() {
             {status === 'success' ? (
               <div className={`card ${styles.successMsg}`}>
                 <p className={`font-mono ${styles.successLabel}`}>&#10003; Message sent</p>
-                <p>Thanks &#8212; I&#39;ll be in touch within 24 hours.</p>
+                <p>Thanks. Ryan will get back to you within 24 hours.</p>
               </div>
             ) : (
               <form className={styles.form} onSubmit={handleSubmit} noValidate>
@@ -88,19 +68,15 @@ export default function Contact() {
                   <Field label="Your Name" name="name" type="text" value={formData.name} onChange={handleChange} required />
                   <Field label="Email Address" name="email" type="email" value={formData.email} onChange={handleChange} required />
                 </div>
-                <div className={styles.row}>
-                  <SelectField label="Project Type" name="projectType" value={formData.projectType} onChange={handleChange} options={PROJECT_TYPES} />
-                  <SelectField label="Budget Range" name="budget" value={formData.budget} onChange={handleChange} options={BUDGET_RANGES} />
-                </div>
                 <Field
-                  label="Tell me about your game"
+                  label="Message"
                   name="message"
                   type="textarea"
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  placeholder="Genre, art style, timeline, what kind of music you&#39;re envisioning..."
-                  rows={5}
+                  placeholder="What&#39;s on your mind?"
+                  rows={6}
                 />
                 <div role="alert" aria-live="assertive" aria-atomic="true">
                   {status === 'error' && (
@@ -115,7 +91,7 @@ export default function Contact() {
                   disabled={status === 'loading'}
                   aria-busy={status === 'loading'}
                 >
-                  {status === 'loading' ? 'Sending...' : 'Send Inquiry'}
+                  {status === 'loading' ? 'Sending...' : 'Send Message'}
                 </button>
               </form>
             )}
@@ -153,20 +129,6 @@ function Field({ label, name, type, value, onChange, required, placeholder, rows
           className={styles.input}
         />
       )}
-    </div>
-  )
-}
-
-function SelectField({ label, name, value, onChange, options }) {
-  return (
-    <div className={styles.field}>
-      <label htmlFor={name} className={styles.label}>{label}</label>
-      <select id={name} name={name} value={value} onChange={onChange} className={styles.input}>
-        <option value="">Select...</option>
-        {options.map(opt => (
-          <option key={opt} value={opt}>{opt}</option>
-        ))}
-      </select>
     </div>
   )
 }

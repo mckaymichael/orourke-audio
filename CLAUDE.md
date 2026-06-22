@@ -17,7 +17,7 @@ src/
   api/        — all WordPress API calls (wp.js only)
   components/ — shared UI components (Nav, Footer, etc.)
   hooks/      — custom React hooks (usePortfolio, useServices)
-  pages/      — one folder per route (Home, Portfolio, Services, Contact)
+  pages/      — one folder per route (Home, Portfolio, About, Contact)
   styles/     — global.css with design tokens only
 ```
 
@@ -39,18 +39,21 @@ src/
 - **Body Font:** Inter
 
 ## WordPress Setup
-- Custom post types: `portfolio`, `service` (registered via CPT UI)
+- Custom post types: `portfolio` (active), `service` (unused — Services page removed)
 - Custom taxonomy: `portfolio_category` (attached to portfolio)
-- ACF field groups: `Portfolio Fields`, `Service Fields`
-- Contact Form 7 form ID: 16
+- ACF field groups: `Portfolio Fields`
+- Contact Form 7 form ID: 16 — fields: `your-name`, `your-email`, `your-message`
 - REST API base: `http://orourke-audio.local/wp-json`
 - Vite proxies `/wp-json` to the local WP instance during development
 
 ## Pages
-- `/` — Home (hero with demo reel, featured work, services teaser)
-- `/portfolio` — Portfolio grid with category filter tabs
-- `/services` — Services + About
-- `/contact` — Project inquiry form
+- `/` — Home (hero with composition reel, featured work, CTA)
+- `/portfolio` — Portfolio grid with category filter tabs (game audio)
+- `/about` — About Ryan (hardcoded, not WP-managed)
+- `/contact` — Simple reach-out form (name, email, message only)
+
+## Site Purpose
+This is a job-seeking portfolio site for Ryan O'Rourke, a composer targeting game audio studios. The goal is to get Ryan hired, not to run a freelance business. There is no services page, no pricing, and no client-facing inquiry flow. The site should feel like a person, not a vendor.
 
 ## Environment
 - `.env` holds `VITE_WP_API_URL`, `VITE_USE_MOCK_DATA`, `VITE_CF7_FORM_ID`

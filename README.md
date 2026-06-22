@@ -1,6 +1,6 @@
 # O'Rourke Audio
 
-Professional website for Ryan O'Rourke, a Vancouver-based sound designer and composer. Built as a React + headless WordPress application targeting indie film clients.
+Portfolio site for Ryan O'Rourke, a Vancouver-based composer targeting game audio studios. Built as a React + headless WordPress application. The site is designed to get Ryan hired, not to run a freelance business.
 
 **Live site:** [orourkeaudio.ca](https://www.orourkeaudio.ca)
 
@@ -66,7 +66,7 @@ src/
   api/          — all WordPress API calls (wp.js is the only entry point)
   components/   — shared UI (Nav, Footer, etc.)
   hooks/        — custom React hooks (usePortfolio, useServices)
-  pages/        — one folder per route (Home, Portfolio, Services, Contact)
+  pages/        — one folder per route (Home, Portfolio, About, Contact)
   styles/       — global.css with CSS design tokens
 ```
 
@@ -74,10 +74,10 @@ src/
 
 | Route | Description |
 |---|---|
-| `/` | Home — hero with demo reel, featured work, services teaser |
-| `/portfolio` | Portfolio grid with category filter tabs |
-| `/services` | Services listing and about section |
-| `/contact` | Project inquiry form |
+| `/` | Home — hero with composition reel, featured work, CTA |
+| `/portfolio` | Portfolio grid with category filter tabs (game audio) |
+| `/about` | About Ryan — hardcoded, not WP-managed |
+| `/contact` | Simple reach-out form (name, email, message only) |
 
 ---
 
@@ -86,15 +86,16 @@ src/
 Local WP site: `http://orourke-audio.local`
 
 Custom post types (registered via CPT UI):
-- `portfolio`
-- `service`
+- `portfolio` (active)
+- `service` (unused — Services page removed)
 
 Custom taxonomy:
 - `portfolio_category` — attached to portfolio posts
 
 ACF field groups:
 - `Portfolio Fields`
-- `Service Fields`
+
+Contact Form 7 fields: `your-name`, `your-email`, `your-message`
 
 Contact Form 7 form ID: `16`
 

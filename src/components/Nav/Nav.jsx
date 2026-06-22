@@ -2,9 +2,9 @@ import { NavLink } from 'react-router-dom'
 import styles from './Nav.module.css'
 
 const links = [
-  { to: '/portfolio', label: 'Portfolio' },
-  { to: '/services',  label: 'Services' },
-  { to: '/contact',   label: 'Contact'  },
+  { to: '/portfolio', label: 'Work'    },
+  { to: '/about',     label: 'About'   },
+  { to: '/contact',   label: 'Contact' },
 ]
 
 export default function Nav() {
@@ -34,7 +34,7 @@ export default function Nav() {
         </nav>
 
         <NavLink to="/contact" className={`btn btn-primary ${styles.cta}`}>
-          Hire Ryan
+          Get in Touch
         </NavLink>
       </div>
     </header>

@@ -8,13 +8,13 @@ export default function Footer() {
         <div className={styles.top}>
           <div className={styles.brand}>
             <span className={styles.name}>Ryan O&#39;Rourke</span>
-            <span className={styles.tagline}>Your film will sound as intentional as it looks.</span>
+            <span className={styles.tagline}>Composer for games. Based in Vancouver.</span>
           </div>
 
           <nav className={styles.nav} aria-label="Footer navigation">
             <span className={styles.navLabel}>Navigation</span>
-            <Link to="/portfolio">Portfolio</Link>
-            <Link to="/services">Services</Link>
+            <Link to="/portfolio">Work</Link>
+            <Link to="/about">About</Link>
             <Link to="/contact">Contact</Link>
           </nav>
         </div>

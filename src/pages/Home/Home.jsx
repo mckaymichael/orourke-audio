@@ -19,8 +19,7 @@ export default function Home() {
 
             <h1 className={styles.heroTitle}>
               Your game deserves<br />
-              music built
-              for it.
+              music built for it.
             </h1>
 
             <p className={styles.heroSub}>
@@ -44,7 +43,7 @@ export default function Home() {
 
             <div className={styles.heroCtas}>
               <Link to="/portfolio" className="btn btn-primary">Hear the Work</Link>
-              <Link to="/contact" className="btn btn-outline">Discuss Your Game</Link>
+              <Link to="/about" className="btn btn-outline">About Ryan</Link>
             </div>
           </div>
 
@@ -121,17 +120,17 @@ export default function Home() {
             <div className={styles.masterText}>
               <p className={`section-label ${styles.masterLabel}`}>Get in Touch</p>
               <h2 className={styles.masterTitle}>
-                Tell me about<br />your game.
+                Want to work<br />together?
               </h2>
               <p className={styles.masterBody}>
-                Early in development or deep in production — it is never too early
-                to talk about music. Describe what you are building and Ryan will
-                get back to you within 24 hours.
+                Ryan is looking to connect with studios and people in the game
+                audio world. Whether you have a project, feedback on his work,
+                or just want to talk — he will get back to you within 24 hours.
               </p>
             </div>
             <div className={styles.masterCta}>
               <Link to="/contact" className={`btn btn-primary ${styles.masterBtn}`}>
-                Start the Conversation
+                Say Hello
               </Link>
               <p className={styles.masterNote}>Based in Vancouver. Available remotely worldwide.</p>
             </div>

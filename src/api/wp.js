@@ -80,16 +80,14 @@ export async function getPage(slug) {
  * Submit a contact form via Contact Form 7 REST API.
  * Requires the CF7 plugin installed and the form ID set below.
  *
- * @param {Object} data - { name, email, projectType, message, budget }
+ * @param {Object} data - { name, email, message }
  */
 export async function submitContactForm(data) {
   const CF7_FORM_ID = import.meta.env.VITE_CF7_FORM_ID ?? '1'
   const body = new FormData()
   body.append('your-name',    data.name)
   body.append('your-email',   data.email)
-  body.append('project-type', data.projectType)
   body.append('your-message', data.message)
-  body.append('budget',       data.budget ?? '')
 
   const res = await fetch(
     `${BASE}/contact-form-7/v1/contact-forms/${CF7_FORM_ID}/feedback`,
