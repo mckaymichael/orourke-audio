@@ -10,24 +10,21 @@ export default function About() {
         <div className="container">
           <div className={styles.introGrid}>
             <div className={styles.introText}>
-              <p className="section-label">About</p>
               <h1 className={styles.name}>Ryan O'Rourke</h1>
-              <p className={styles.role}>Composer. Vancouver, BC.</p>
+              <p className={styles.role}>Composer for Games</p>
 
               <p className={styles.bio}>
-                Ryan makes music. He has been doing it for years — production,
-                composition, arrangement — and he is now focused on bringing that
-                into games.
+                I make music and design sound. I have been producing, composing, and engineering audio
+                for nearly a decade, working across game sound, film post-production, and commercial music.
               </p>
               <p className={styles.bio}>
-                His background is in music, not sound engineering, which means he
-                thinks in terms of feel, tension, and emotional arc rather than
-                technical checklists. He writes music that fits the world it lives in.
+                My background merges music production and audio engineering, meaning I bring a strong musical ear
+                alongside technical grounding. I think in terms of feel, tension, and emotional arc, and I construct
+                assets that drop seamlessly into developer pipelines.
               </p>
               <p className={styles.bio}>
-                He trained at LaSalle College Vancouver and has been working on his
-                craft ever since. He is early in his game audio career, he knows it,
-                and he is actively looking to be around people who can help him grow.
+                I graduated with a Professional Recording Arts Diploma from LaSalle College Vancouver. With a solid foundation
+                in mixing, mastering, and sound design, I am focused on creating interactive, immersive soundtracks for games.
               </p>
 
               <div className={styles.links}>
@@ -45,32 +42,31 @@ export default function About() {
         </div>
       </section>
 
-      {/* ── What he brings ──────────────────── */}
+      {/* ── What I Bring ──────────────────── */}
       <section className={`section ${styles.brings}`}>
         <div className="container">
-          <p className="section-label">What He Brings</p>
           <h2 className="section-title">Built on music.<br />Learning games.</h2>
 
           <div className={styles.bringGrid}>
             {[
               {
                 label: 'Composition',
-                body: 'Original music across a wide range of moods and genres. He writes from scratch for every project and does not reach for stock libraries.',
+                body: 'Original music across a wide range of moods and genres. I write from scratch for every project and do not reach for stock libraries.',
               },
               {
                 label: 'Range',
-                body: 'Orchestral, ambient, electronic, hybrid. He is comfortable moving across styles and is used to adapting to a brief.',
+                body: 'Orchestral, ambient, electronic, hybrid. I am comfortable moving across styles and am used to adapting to a brief.',
               },
               {
                 label: 'Collaboration',
-                body: 'He takes feedback well, communicates clearly, and does not disappear mid-project. Working with him is low-friction.',
+                body: 'I take feedback well, communicate clearly, and do not disappear mid-project. Working with me is low-friction.',
               },
               {
                 label: 'Work ethic',
-                body: 'He is actively building. If there is something he does not know yet, he is the kind of person who goes and learns it.',
+                body: 'I am actively building. If there is something I do not know yet, I go and learn it.',
               },
             ].map(({ label, body }) => (
-              <div key={label} className={`card ${styles.bringCard}`}>
+              <div key={label} className={styles.bringCard}>
                 <span className={`font-mono ${styles.bringLabel}`}>{label}</span>
                 <p className={styles.bringBody}>{body}</p>
               </div>
@@ -84,26 +80,23 @@ export default function About() {
         <div className="container">
           <div className={styles.bgGrid}>
             <div>
-              <p className="section-label">Background</p>
-              <h2 className="section-title">Where he comes from.</h2>
+              <h2 className="section-title">Where I come from.</h2>
               <p className={styles.bgBody}>
-                Ryan studied at LaSalle College Vancouver, where he built his
-                foundation in music production and audio. He has spent the time since
-                developing his composition skills and getting serious about game audio.
+                I graduated with a Professional Recording Arts Diploma from LaSalle College Vancouver, where I built a deep
+                foundation in recording technology and production. Since then, I have spent years as a freelance producer and composer,
+                as well as a lead audio engineer at Bassunga Entertainment and Mindflow Records.
               </p>
               <p className={styles.bgBody}>
-                He is not pretending to have shipped titles he has not shipped. What
-                he has is strong musical instincts, a genuine interest in games, and
-                the drive to put himself in rooms where he can learn from people who
-                have been doing this longer than he has.
+                Over the last eight years, I have mixed, mastered, and engineered audio for independent films, records, and commercial releases. 
+                I bring strong sonic instincts, hands-on industry experience, and the technical vocabulary needed to collaborate effectively 
+                with development teams.
               </p>
             </div>
             <div className={styles.facts}>
               {[
                 { label: 'Education', value: 'LaSalle College Vancouver' },
                 { label: 'Focus', value: 'Game Composition' },
-                { label: 'Based', value: 'Vancouver, BC' },
-                { label: 'Available', value: 'Remote worldwide' },
+                { label: 'Availability', value: 'Available worldwide' },
               ].map(({ label, value }) => (
                 <div key={label} className={styles.fact}>
                   <span className={`font-mono ${styles.factLabel}`}>{label}</span>
@@ -115,14 +108,57 @@ export default function About() {
         </div>
       </section>
 
+      {/* ── Vancouver ───────────────────────── */}
+      <section className={`section ${styles.vancouver}`}>
+        <div className="container">
+          <div className={styles.vancouverHeader}>
+            <h2 className={styles.vancouverTitle}>Inspired by the Pacific Northwest</h2>
+            <p className={styles.vancouverBody}>
+              Vancouver is more than just where I live; it is a constant source of inspiration. 
+              The contrast between the quiet, mossy forests of the North Shore and the high-energy city streets 
+              shapes how I think about texture, space, and contrast in my music. 
+              Whether I am capturing field recordings in the rainforest, walking the downtown skyline, 
+              or listening to live shows in our local music venues, the unique pulse of the Pacific Northwest 
+              is embedded in every track I compose.
+            </p>
+          </div>
+          <div className={styles.vancouverGallery}>
+            <div className={styles.vancouverImgWrap}>
+              <img 
+                src="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=800&q=80" 
+                className={styles.vancouverImg} 
+                alt="Foggy Pacific Northwest forest trees" 
+              />
+              <span className={styles.vancouverCaption}>Forests</span>
+            </div>
+            <div className={styles.vancouverImgWrap}>
+              <img 
+                src="https://images.unsplash.com/photo-1559511260-66a654ae982a?auto=format&fit=crop&w=800&q=80" 
+                className={styles.vancouverImg} 
+                alt="Vancouver downtown cityscape skyline" 
+              />
+              <span className={styles.vancouverCaption}>Cityscape</span>
+            </div>
+            <div className={styles.vancouverImgWrap}>
+              <img 
+                src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80" 
+                className={styles.vancouverImg} 
+                alt="Live concert crowd and stage lights" 
+              />
+              <span className={styles.vancouverCaption}>Music Scene</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── CTA ─────────────────────────────── */}
       <section className={`section ${styles.cta}`}>
         <div className="container">
           <div className={styles.ctaInner}>
             <h2 className={styles.ctaTitle}>Want to talk?</h2>
             <p className={styles.ctaBody}>
-              Whether you want to give feedback on his work, talk about a project,
-              or just connect — Ryan is easy to reach and quick to respond.
+              Whether you want to give feedback on my work, talk about a project,
+              or just connect, I am easy to reach and quick to respond.
             </p>
             <Link to="/contact" className="btn btn-primary">Say Hello</Link>
           </div>

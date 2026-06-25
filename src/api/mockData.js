@@ -1,5 +1,5 @@
 /**
- * Mock data — used when VITE_USE_MOCK_DATA=true
+ * Mock data, used when VITE_USE_MOCK_DATA=true
  * Mirrors the shape of WordPress REST API responses (with ACF fields)
  */
 
@@ -13,8 +13,8 @@ export const mockCategories = [
 export const mockPortfolioItems = [
   {
     id: 1,
-    title: { rendered: 'Ironveil — Full OST' },
-    excerpt: { rendered: '<p>Original soundtrack for a 2D action-RPG. 14 tracks spanning combat, exploration, and cutscene cues — delivered as stems for adaptive implementation.</p>' },
+    title: { rendered: 'Ironveil: Full OST' },
+    excerpt: { rendered: '<p>Original soundtrack for a 2D action-RPG. 14 tracks spanning combat, exploration, and cutscene cues, delivered as stems for adaptive implementation.</p>' },
     portfolio_category: [1],
     acf: {
       audio_url: '',
@@ -25,7 +25,7 @@ export const mockPortfolioItems = [
   },
   {
     id: 2,
-    title: { rendered: 'Depths of Nora — Main Theme' },
+    title: { rendered: 'Depths of Nora: Main Theme' },
     excerpt: { rendered: '<p>Main theme for a narrative exploration game. A single melodic motif developed through three variations: title screen, mid-game, and finale.</p>' },
     portfolio_category: [2],
     acf: {
@@ -37,8 +37,8 @@ export const mockPortfolioItems = [
   },
   {
     id: 3,
-    title: { rendered: 'Verdant — Ambient Loop Pack' },
-    excerpt: { rendered: '<p>Eight seamlessly looping ambient tracks for a cozy farming sim. Each loop was built around the visual palette of its biome — forest, coast, desert, and winter.</p>' },
+    title: { rendered: 'Verdant: Ambient Loop Pack' },
+    excerpt: { rendered: '<p>Eight seamlessly looping ambient tracks for a cozy farming sim. Each loop was built around the visual palette of its biome: forest, coast, desert, and winter.</p>' },
     portfolio_category: [3],
     acf: {
       audio_url: '',
@@ -49,8 +49,8 @@ export const mockPortfolioItems = [
   },
   {
     id: 4,
-    title: { rendered: 'Signal Lost — Cinematic Trailer' },
-    excerpt: { rendered: '<p>Cinematic score for a sci-fi game trailer. Built around a tension arc from silence to full orchestral swell — synced to picture, delivered as a single mixed master.</p>' },
+    title: { rendered: 'Signal Lost: Cinematic Trailer' },
+    excerpt: { rendered: '<p>Cinematic score for a sci-fi game trailer. Built around a tension arc from silence to full orchestral swell, synced to picture, delivered as a single mixed master.</p>' },
     portfolio_category: [4],
     acf: {
       audio_url: '',
@@ -61,8 +61,8 @@ export const mockPortfolioItems = [
   },
   {
     id: 5,
-    title: { rendered: 'Hollow Keep — Combat Suite' },
-    excerpt: { rendered: '<p>Combat music suite for a gothic dungeon crawler. Three intensity layers designed for adaptive layering — loop-ready, stem-separated, engine-agnostic.</p>' },
+    title: { rendered: 'Hollow Keep: Combat Suite' },
+    excerpt: { rendered: '<p>Combat music suite for a gothic dungeon crawler. Three intensity layers designed for adaptive layering: loop-ready, stem-separated, and engine-agnostic.</p>' },
     portfolio_category: [1],
     acf: {
       audio_url: '',
@@ -73,8 +73,8 @@ export const mockPortfolioItems = [
   },
   {
     id: 6,
-    title: { rendered: 'Luma — UI & Menu Music' },
-    excerpt: { rendered: '<p>Menu music and UI stings for a mobile puzzle game. Upbeat, minimal, and non-fatiguing across extended sessions — delivered as looping stems.</p>' },
+    title: { rendered: 'Luma: UI & Menu Music' },
+    excerpt: { rendered: '<p>Menu music and UI stings for a mobile puzzle game. Upbeat, minimal, and non-fatiguing across extended sessions, delivered as looping stems.</p>' },
     portfolio_category: [3],
     acf: {
       audio_url: '',

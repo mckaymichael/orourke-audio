@@ -24,7 +24,7 @@ export default function Portfolio() {
           <p className="section-label">Work</p>
           <h1 className="section-title">Portfolio</h1>
           <p className="section-body">
-            Original soundtracks, main themes, ambient loops, and cinematic cues — organised by type.
+            Original soundtracks, main themes, ambient loops, and cinematic cues, organized by type.
           </p>
         </header>
 

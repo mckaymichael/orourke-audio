@@ -14,20 +14,21 @@ Local WordPress runs via Local by Flywheel at `http://orourke-audio.local`.
 ## File Structure
 ```
 src/
-  api/        — all WordPress API calls (wp.js only)
-  components/ — shared UI components (Nav, Footer, etc.)
-  hooks/      — custom React hooks (usePortfolio, useServices)
-  pages/      — one folder per route (Home, Portfolio, About, Contact)
-  styles/     — global.css with design tokens only
+  api/        (all WordPress API calls, in wp.js only)
+  components/ (shared UI components, e.g., Nav, Footer, etc.)
+  hooks/      (custom React hooks, e.g., usePortfolio, useServices)
+  pages/      (one folder per route, e.g., Home, Portfolio, About, Contact)
+  styles/     (global.css with design tokens only)
 ```
 
 ## Coding Rules
-- **CSS Modules only** — no inline styles, no Tailwind, no styled-components
-- **All WP API calls go through `src/api/wp.js`** — never fetch directly in components or hooks
-- **Use CSS variables for all colours, spacing, and typography** — never hardcode values
-- **CSS variables are defined in `src/styles/global.css`** — do not redefine them in module files
+- **CSS Modules only**: no inline styles, no Tailwind, and no styled-components
+- **All WP API calls go through `src/api/wp.js`**: never fetch directly in components or hooks
+- **Use CSS variables for all colours, spacing, and typography**: never hardcode values
+- **CSS variables are defined in `src/styles/global.css`**: do not redefine them in module files
 - Components use `.module.css` files in the same folder as the component
 - Pages use `.module.css` files in the same folder as the page
+- **No Em Dashes**: Never use em dashes (`—`) in any copywriting, code, comments, or log files. Structure sentences in such a way to specifically avoid the need for em dashes.
 
 ## Brand — Source of Truth: `branding/Brand Guide.md`
 - **White:** #F7F0F1
@@ -39,27 +40,27 @@ src/
 - **Body Font:** Inter
 
 ## WordPress Setup
-- Custom post types: `portfolio` (active), `service` (unused — Services page removed)
+- Custom post types: `portfolio` (active), `service` (unused, Services page removed)
 - Custom taxonomy: `portfolio_category` (attached to portfolio)
 - ACF field groups: `Portfolio Fields`
-- Contact Form 7 form ID: 16 — fields: `your-name`, `your-email`, `your-message`
+- Contact Form 7 form ID: 16 (fields: `your-name`, `your-email`, `your-message`)
 - REST API base: `http://orourke-audio.local/wp-json`
 - Vite proxies `/wp-json` to the local WP instance during development
 
 ## Pages
-- `/` — Home (hero with composition reel, featured work, CTA)
-- `/portfolio` — Portfolio grid with category filter tabs (game audio)
-- `/about` — About Ryan (hardcoded, not WP-managed)
-- `/contact` — Simple reach-out form (name, email, message only)
+- `/`: Home (hero with composition reel, featured work, CTA)
+- `/portfolio`: Portfolio grid with category filter tabs (game audio)
+- `/about`: About Ryan (hardcoded, not WP-managed)
+- `/contact`: Simple reach-out form (name, email, message only)
 
 ## Site Purpose
 This is a job-seeking portfolio site for Ryan O'Rourke, a composer targeting game audio studios. The goal is to get Ryan hired, not to run a freelance business. There is no services page, no pricing, and no client-facing inquiry flow. The site should feel like a person, not a vendor.
 
 ## Environment
 - `.env` holds `VITE_WP_API_URL`, `VITE_USE_MOCK_DATA`, `VITE_CF7_FORM_ID`
-- Never commit `.env` — use `.env.example` as the template
+- Never commit `.env`, use `.env.example` as the template
 
 ## GenAI Logging Rules
-- **genai-usage-log.pdf** — populate after every AI interaction: service/tool, model, what it was used for, result evaluation. Do this automatically without asking.
-- **prompt-log.docx** — only populated when Michael explicitly labels a prompt as a **"Key Prompt"**. Record: the prompt text, what it produced, tool/model, date, and outcome. Ask Michael "Was it useful, partially useful, or not useful?" and allow for additional notes before finalizing the entry. All other fields can be filled in without confirmation.
+- **genai-usage-log.pdf**: populate after every AI interaction: service/tool, model, what it was used for, result evaluation. Do this automatically without asking.
+- **prompt-log.docx**: only populated when Michael explicitly labels a prompt as a **"Key Prompt"**. Record: the prompt text, what it produced, tool/model, date, and outcome. Ask Michael "Was it useful, partially useful, or not useful?" and allow for additional notes before finalizing the entry. All other fields can be filled in without confirmation.
 - Both documents are in the Term Project uploads and should be kept current as we go.

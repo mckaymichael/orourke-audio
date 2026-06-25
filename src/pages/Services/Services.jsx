@@ -6,7 +6,7 @@ import styles from './Services.module.css'
  * SERVICES + ABOUT PAGE
  *
  * Top half: Services pulled from WordPress (custom post type: "service")
- * Bottom half: About section — Ryan's story and differentiator
+ * Bottom half: About section (Ryan's story and differentiator)
  *
  * ACF fields per service: tagline, features (repeater), starting_price, cta_label
  */
@@ -56,7 +56,7 @@ export default function Services() {
               <p className={styles.bio}>
                 Ryan O'Rourke is a Vancouver-based composer with roots in music production
                 and a focus on interactive media. He writes original music that serves the
-                game — whether that is an expansive orchestral OST, a looping ambient set,
+                game, whether that is an expansive orchestral OST, a looping ambient set,
                 or a single main theme that carries the whole identity of the project.
               </p>
               <p className={styles.bio}>
@@ -126,7 +126,7 @@ function ServiceCard({ service }) {
   )
 }
 
-/** Shown when WP has no services yet — hardcoded fallback for dev */
+/** Shown when WP has no services yet, hardcoded fallback for dev */
 function ServicesFallback() {
   const fallback = [
     {

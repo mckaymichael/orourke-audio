@@ -37,8 +37,8 @@ export default function Contact() {
             <p className="section-label">Contact</p>
             <h1 className="section-title">Say hello.</h1>
             <p className={styles.intro}>
-              Whether you want to give feedback on his work, talk about
-              a project, or just connect — Ryan is easy to reach.
+              Whether you want to give feedback on my work, talk about
+              a project, or just connect, I am easy to reach.
             </p>
             <div className={styles.details}>
               <div className={styles.detail}>

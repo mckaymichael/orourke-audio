@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import styles from './Nav.module.css'
+import logoSvg from '../../images/logo/Primary Logo - White.svg'
 
 const links = [
   { to: '/portfolio', label: 'Work'    },
@@ -11,9 +12,8 @@ export default function Nav() {
   return (
     <header className={styles.header}>
       <div className={`container ${styles.inner}`}>
-        <NavLink to="/" className={styles.logo} aria-label="O'Rourke Audio — Home">
-          <span className={styles.logoName}>O'Rourke</span>
-          <span className={styles.logoSub}>Audio</span>
+        <NavLink to="/" className={styles.logo} aria-label="O'Rourke Audio Home">
+          <img src={logoSvg} className={styles.logoImg} alt="O'Rourke Audio Logo" />
         </NavLink>
 
         <nav aria-label="Main navigation">
