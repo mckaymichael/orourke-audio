@@ -52,6 +52,7 @@
 }
 
 .audioWrap {
+  position: relative;
   padding: var(--space-4);
   border-bottom: 1px solid var(--color-border);
   background-color: rgba(0, 0, 0, 0.3);
@@ -60,6 +61,36 @@
 .audio {
   width: 100%;
   accent-color: var(--color-primary);
+}
+
+.videoWrap {
+  position: relative;
+  border-bottom: 1px solid var(--color-border);
+  background-color: #000;
+  line-height: 0;
+}
+
+.video {
+  width: 100%;
+  max-height: 320px;
+  display: block;
+  object-fit: cover;
+}
+
+.mediaBadge {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  z-index: 2;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  background-color: rgba(0, 0, 0, 0.65);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  pointer-events: none;
 }
 
 .cardBody {

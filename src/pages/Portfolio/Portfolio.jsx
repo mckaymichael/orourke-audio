@@ -11,7 +11,10 @@ import styles from './Portfolio.module.css'
  *
  * WordPress custom post type required: "portfolio"
  * WordPress custom taxonomy required: "portfolio_category"
- * ACF fields per item: audio_url, description, category, year
+ * ACF fields per item: audio_url, video_url, media_type, description, category, year
+ *
+ * media_type is "audio" or "video". When "video", video_url (a self-hosted
+ * MP4 in the WordPress Media Library) is rendered instead of the audio player.
  */
 export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState(null)
@@ -72,14 +75,29 @@ export default function Portfolio() {
 }
 
 function PortfolioCard({ item }) {
-  const acf   = item.acf ?? {}
-  const title = item.title?.rendered ?? 'Untitled'
-  const desc  = item.excerpt?.rendered ?? acf.description ?? ''
+  const acf     = item.acf ?? {}
+  const title   = item.title?.rendered ?? 'Untitled'
+  const desc    = item.excerpt?.rendered ?? acf.description ?? ''
+  const isVideo = acf.media_type === 'video' && Boolean(acf.video_url)
 
   return (
     <article className={`card ${styles.card}`}>
-      {acf.audio_url && (
+      {isVideo && (
+        <div className={styles.videoWrap}>
+          <span className={styles.mediaBadge}>Video</span>
+          <video
+            controls
+            preload="metadata"
+            className={styles.video}
+            aria-label={`Video player for ${title}`}
+          >
+            <source src={acf.video_url} type="video/mp4" />
+          </video>
+        </div>
+      )}
+      {!isVideo && acf.audio_url && (
         <div className={styles.audioWrap}>
+          <span className={styles.mediaBadge}>Audio</span>
           <audio
             controls
             preload="metadata"

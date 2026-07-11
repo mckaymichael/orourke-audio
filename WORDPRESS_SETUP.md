@@ -93,11 +93,15 @@ Create a field group called **Portfolio Fields**, attach to Post Type = `portfol
 
 | Field Label | Field Name | Type | Notes |
 |-------------|------------|------|-------|
-| Audio URL | `audio_url` | URL | Direct link to hosted MP3 |
+| Media Type | `media_type` | Select | Choices: `audio`, `video`. Default `audio`. Controls which player renders on the frontend. |
+| Audio URL | `audio_url` | File | Self-hosted MP3, uploaded to the Media Library. Used when Media Type = `audio`. Return format: File URL. |
+| Video URL | `video_url` | File | Self-hosted MP4, uploaded to the Media Library. Used when Media Type = `video`. Return format: File URL. |
 | Description | `description` | Textarea | Short project description |
 | Year | `year` | Number | 4-digit year |
 | Category | `category` | Text | Display category label |
 | Featured | `featured` | True/False | Show on homepage if true |
+
+> **Self-hosted video note:** WordPress's default upload limit (often 2–64MB depending on host) can block larger MP4s. Check **Media → Add New** for the "Maximum upload file size" shown there. If a file is too large, compress it (H.264, reasonable bitrate) before uploading, or raise the limit via the hosting environment's PHP settings (`upload_max_filesize`, `post_max_size`).
 
 ---
 
