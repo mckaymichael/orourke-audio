@@ -7,6 +7,7 @@ import Portfolio from './pages/Portfolio/Portfolio.jsx'
 import About from './pages/About/About.jsx'
 import Contact from './pages/Contact/Contact.jsx'
 import NotFound from './pages/NotFound.jsx'
+import HomeConcepts from './pages/HomeConcepts/HomeConcepts.jsx'
 
 export default function App() {
   return (
@@ -19,6 +20,8 @@ export default function App() {
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          {/* Hidden — not linked from Nav/Footer/BottomNav, noindex via HomeConcepts itself */}
+          <Route path="/lab/home-concepts" element={<HomeConcepts />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

@@ -1,0 +1,357 @@
+/* Concept D, "Pressure Wave"
+   Asymmetric split hero with a ripple shader panel, tilt cards,
+   mechanical press buttons, and a giant slide-fill CTA link. */
+
+.page {
+  background-color: var(--color-bg);
+}
+
+/* ── Split hero ───────────────────────────────────────────── */
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  min-height: 88vh;
+}
+
+.heroCopy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-24) var(--space-12);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  margin-bottom: var(--space-6);
+}
+
+.eyebrowPulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(232, 24, 31, 0.5); }
+  50%      { box-shadow: 0 0 0 8px rgba(232, 24, 31, 0); }
+}
+
+.heroTitle {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: clamp(var(--text-3xl), 4.5vw, var(--text-6xl));
+  line-height: 1.08;
+  margin-bottom: var(--space-6);
+}
+
+.heroSub {
+  font-size: var(--text-lg);
+  color: var(--color-mid-grey);
+  max-width: 46ch;
+  margin-bottom: var(--space-10);
+}
+
+.ctaRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+}
+
+/* ── Press button: lifts on hover, presses flat on click ──── */
+
+.pressBtn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: var(--space-3) var(--space-8);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: transform 150ms ease, box-shadow 150ms ease,
+              background-color var(--transition);
+}
+
+.pressPrimary {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  box-shadow: 0 0 0 rgba(38, 21, 24, 0);
+}
+
+.pressPrimary:hover,
+.pressPrimary:focus-visible {
+  transform: translate(-3px, -3px);
+  box-shadow: 3px 3px 0 var(--color-secondary);
+  background-color: var(--color-primary-dim);
+}
+
+.pressPrimary:active {
+  transform: translate(0, 0);
+  box-shadow: 0 0 0 var(--color-secondary);
+}
+
+/* ── Arrow link: gap widens toward the arrow on hover ─────── */
+
+.arrowLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--space-1);
+  transition: color var(--transition), border-color var(--transition), gap 200ms ease;
+}
+
+.arrowGlyph {
+  transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.arrowLink:hover,
+.arrowLink:focus-visible {
+  color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  gap: var(--space-4);
+}
+
+.arrowLink:hover .arrowGlyph,
+.arrowLink:focus-visible .arrowGlyph {
+  transform: translateX(2px);
+}
+
+.arrowLink:active {
+  gap: var(--space-2);
+}
+
+/* ── Shader panel ─────────────────────────────────────────── */
+
+.heroPanel {
+  position: relative;
+  overflow: hidden;
+  border-left: 1px solid var(--color-border);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: var(--space-12);
+}
+
+.panelCard {
+  position: relative;
+  z-index: var(--z-base);
+  width: min(100%, 480px);
+  background-color: rgba(18, 16, 16, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: border-color var(--transition), transform 300ms ease;
+}
+
+.panelCard:hover {
+  border-color: rgba(232, 24, 31, 0.45);
+  transform: translateY(-6px);
+}
+
+.panelCaption {
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.panelVideo {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+/* ── Tilt cards ───────────────────────────────────────────── */
+
+.cards {
+  padding-block: var(--space-32);
+  border-top: 1px solid var(--color-border);
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+  perspective: 1000px;
+}
+
+.tiltCard {
+  --rx: 0deg;
+  --ry: 0deg;
+  --gx: 50%;
+  --gy: 50%;
+  position: relative;
+  overflow: hidden;
+  padding: var(--space-8);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transform: rotateX(var(--rx)) rotateY(var(--ry));
+  transform-style: preserve-3d;
+  transition: transform 200ms ease, border-color var(--transition);
+  will-change: transform;
+}
+
+.tiltCard:hover {
+  border-color: rgba(232, 24, 31, 0.4);
+}
+
+.tiltGlare {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle 220px at var(--gx) var(--gy),
+    rgba(247, 240, 241, 0.08),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity var(--transition);
+  pointer-events: none;
+}
+
+.tiltCard:hover .tiltGlare {
+  opacity: 1;
+}
+
+.cardLabel {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--color-secondary);
+  margin-bottom: var(--space-4);
+}
+
+.cardTitle {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  margin-bottom: var(--space-4);
+}
+
+.cardBody {
+  color: var(--color-mid-grey);
+  font-size: var(--text-base);
+}
+
+/* ── Giant slide-fill CTA ─────────────────────────────────── */
+
+.ctaSection {
+  padding-block: var(--space-24) var(--space-32);
+  border-top: 1px solid var(--color-border);
+}
+
+.ctaLabel {
+  margin-bottom: var(--space-8);
+}
+
+.giantCta {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-block: 1px solid var(--color-border);
+  padding: var(--space-12) var(--container-pad);
+  transition: border-color var(--transition);
+}
+
+.giantFill {
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-primary);
+  transform: translateY(101%);
+  transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+.giantCta:hover .giantFill,
+.giantCta:focus-visible .giantFill {
+  transform: translateY(0);
+}
+
+.giantLabel {
+  position: relative;
+  z-index: var(--z-base);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  max-width: var(--container-max);
+  margin-inline: auto;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(var(--text-2xl), 4vw, var(--text-5xl));
+  color: var(--color-white);
+  transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.giantCta:hover .giantLabel,
+.giantCta:focus-visible .giantLabel {
+  transform: translateX(var(--space-4));
+}
+
+.giantCta:active .giantLabel {
+  transform: translateX(var(--space-2)) scale(0.99);
+}
+
+.giantArrow {
+  font-family: var(--font-body);
+  transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.giantCta:hover .giantArrow,
+.giantCta:focus-visible .giantArrow {
+  transform: translateX(var(--space-3));
+}
+
+.ctaNote {
+  margin-top: var(--space-6);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-mid-grey);
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .heroCopy {
+    padding: var(--space-16) var(--container-pad);
+  }
+
+  .heroPanel {
+    min-height: 60vh;
+    border-left: none;
+    border-top: 1px solid var(--color-border);
+    padding: var(--space-6);
+  }
+
+  .cardGrid {
+    grid-template-columns: 1fr;
+  }
+}
