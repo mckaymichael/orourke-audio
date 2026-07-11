@@ -1,0 +1,127 @@
+.wrap {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding: 0 var(--container-pad) var(--space-24);
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+/* ── Monitor ──────────────────────────────────────────────── */
+.monitor {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: #0a0908;
+}
+.frameTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-2) var(--space-4);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--color-mid-grey);
+  border-bottom: 1px solid var(--color-border);
+}
+.live { color: var(--color-primary); }
+
+.screen { position: relative; aspect-ratio: 4 / 3; }
+.screenImg { width: 100%; height: 100%; object-fit: cover; filter: saturate(1.1) contrast(1.05); }
+.scan { position: absolute; inset: 0; background: repeating-linear-gradient(180deg, rgba(0,0,0,0.28) 0 1px, transparent 1px 3px); pointer-events: none; }
+.vignette { position: absolute; inset: 0; background: radial-gradient(circle at 50% 45%, transparent 45%, rgba(10,9,8,0.75)); }
+.screenMeta { position: absolute; left: var(--space-5); bottom: var(--space-8); }
+.tuned { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; color: var(--color-secondary); }
+.screenTitle { font-family: var(--font-heading); font-size: var(--text-3xl); color: var(--color-white); margin: var(--space-1) 0; }
+.screenSub { color: var(--color-mid-grey); font-size: var(--text-sm); }
+
+.scopeRow {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 34px;
+  padding: 0 var(--space-2);
+  opacity: 0.75;
+}
+.scopeBar {
+  flex: 1;
+  height: 30%;
+  background: var(--color-primary);
+  animation: scope 800ms ease-in-out infinite alternate;
+}
+@keyframes scope {
+  from { height: 12%; opacity: 0.4; }
+  to   { height: 100%; opacity: 0.9; }
+}
+
+/* ── Terminal ─────────────────────────────────────────────── */
+.terminal {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: #0c0a0a;
+  overflow: hidden;
+  font-family: var(--font-mono);
+}
+.termHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  font-size: 11px;
+  color: var(--color-mid-grey);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+.dots { display: flex; gap: 5px; }
+.dots i { width: 9px; height: 9px; border-radius: 50%; background: rgba(247,240,241,0.2); }
+.dots i:first-child { background: var(--color-primary); }
+
+.log { padding: var(--space-2) 0; }
+.line {
+  display: grid;
+  grid-template-columns: 16px 24px 1.5fr auto 70px 46px;
+  gap: var(--space-3);
+  align-items: center;
+  width: 100%;
+  padding: var(--space-2) var(--space-4);
+  background: none;
+  border: none;
+  text-align: left;
+  color: var(--color-mid-grey);
+  font-size: 12px;
+  position: relative;
+  transition: background var(--transition), color var(--transition);
+}
+.line:hover { background: rgba(232,24,31,0.08); color: var(--color-white); }
+.lineOn { background: rgba(232,24,31,0.14); color: var(--color-white); }
+.prompt { color: var(--color-primary); }
+.lineNo { color: var(--color-secondary); }
+.lineTitle { color: inherit; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lineCat { color: var(--color-mid-grey); font-size: 10px; white-space: nowrap; }
+.signal { display: inline-flex; align-items: flex-end; gap: 2px; height: 14px; }
+.sigBar { width: 3px; height: 40%; background: rgba(247,240,241,0.18); border-radius: 1px; }
+.sigBar:nth-child(2) { height: 55%; }
+.sigBar:nth-child(3) { height: 70%; }
+.sigBar:nth-child(4) { height: 85%; }
+.sigBar:nth-child(5) { height: 100%; }
+.sigOn { background: var(--color-primary); }
+.lineTime { text-align: right; color: var(--color-mid-grey); }
+.cursor {
+  position: absolute;
+  right: var(--space-3);
+  bottom: 6px;
+  width: 7px; height: 13px;
+  background: var(--color-secondary);
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+@media (max-width: 860px) {
+  .wrap { grid-template-columns: 1fr; }
+  .line { grid-template-columns: 16px 22px 1fr auto 44px; }
+  .lineCat { display: none; }
+}

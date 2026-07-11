@@ -1,0 +1,138 @@
+.wrap {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding: 0 var(--container-pad) var(--space-24);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-6);
+}
+.count {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-mid-grey);
+}
+.toggle {
+  display: inline-flex;
+  padding: 3px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+}
+.toggleBtn {
+  padding: var(--space-2) var(--space-5);
+  border: none;
+  background: none;
+  border-radius: 999px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-mid-grey);
+  transition: all var(--transition);
+}
+.toggleOn { background: var(--color-primary); color: var(--color-white); }
+
+/* ── Cinema (poster grid) ─────────────────────────────────── */
+.cinema {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5);
+}
+.poster {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  transition: transform var(--transition), border-color var(--transition);
+}
+.poster:hover { transform: translateY(-6px); border-color: rgba(232,24,31,0.45); }
+.posterArt { position: relative; aspect-ratio: 2 / 3; }
+.posterImg { width: 100%; height: 100%; object-fit: cover; }
+.posterPlay {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  background: rgba(232,24,31,0.85);
+  display: grid; place-items: center;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.poster:hover .posterPlay { opacity: 1; }
+.tri {
+  width: 0; height: 0;
+  border-left: 15px solid var(--color-white);
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+  margin-left: 4px;
+}
+.posterCat {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  background: rgba(18,16,16,0.7);
+  padding: 3px 7px;
+  border-radius: var(--radius-sm);
+}
+.posterBody { padding: var(--space-4); }
+.posterTitle { font-family: var(--font-heading); font-size: var(--text-base); color: var(--color-white); margin-bottom: var(--space-1); }
+.posterMeta { color: var(--color-primary); font-size: 11px; font-family: var(--font-mono); }
+.posterTime { display: block; color: var(--color-mid-grey); font-size: var(--text-xs); margin-top: var(--space-2); }
+
+/* ── Setlist (compact rows) ───────────────────────────────── */
+.setlist {
+  list-style: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.row {
+  display: grid;
+  grid-template-columns: 34px 44px 1.6fr 1fr 1fr 52px;
+  gap: var(--space-4);
+  align-items: center;
+  padding: var(--space-3) var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+  transition: background var(--transition);
+}
+.row:last-child { border-bottom: none; }
+.row:hover { background: var(--color-surface-2); }
+.rowNum { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--color-primary); }
+.rowThumb { position: relative; width: 44px; aspect-ratio: 1; border-radius: 3px; overflow: hidden; }
+.rowImg { width: 100%; height: 100%; object-fit: cover; }
+.rowPlay {
+  position: absolute; inset: 0;
+  background: rgba(18,16,16,0.45);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.rowPlay::after {
+  content: '';
+  position: absolute; inset: 0; margin: auto;
+  width: 0; height: 0;
+  border-left: 12px solid var(--color-white);
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  margin-left: 17px;
+}
+.row:hover .rowPlay { opacity: 1; }
+.rowTitle { font-size: var(--text-sm); font-weight: 600; color: var(--color-white); }
+.rowCat { font-family: var(--font-mono); font-size: 11px; color: var(--color-secondary); }
+.rowMood { font-size: var(--text-xs); color: var(--color-mid-grey); }
+.rowTime { font-family: var(--font-mono); font-size: 11px; color: var(--color-mid-grey); text-align: right; }
+
+@media (max-width: 860px) {
+  .cinema { grid-template-columns: repeat(2, 1fr); }
+  .row { grid-template-columns: 28px 40px 1fr 60px; }
+  .rowCat, .rowMood { display: none; }
+}
