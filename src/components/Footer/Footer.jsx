@@ -8,7 +8,7 @@ export default function Footer() {
         <div className={styles.top}>
           <div className={styles.brand}>
             <span className={styles.name}>Ryan O&#39;Rourke</span>
-            <span className={styles.tagline}>Composer for games.</span>
+            <span className={styles.tagline}>Video Game Composer</span>
           </div>
 
           <nav className={styles.nav} aria-label="Footer navigation">

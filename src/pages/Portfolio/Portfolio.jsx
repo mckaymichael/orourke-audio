@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { usePortfolio } from '../../hooks/usePortfolio.js'
+import FeaturedAlbum from '../../components/FeaturedAlbum/FeaturedAlbum.jsx'
+import FeaturedFilm from '../../components/FeaturedFilm/FeaturedFilm.jsx'
 import styles from './Portfolio.module.css'
 
 /**
@@ -27,9 +29,12 @@ export default function Portfolio() {
           <p className="section-label">Work</p>
           <h1 className="section-title">Portfolio</h1>
           <p className="section-body">
-            Original soundtracks, main themes, ambient loops, and cinematic cues, organized by type.
+            Original game soundtracks, main themes, ambient loops, and interactive cues, organized by type.
           </p>
         </header>
+
+        <FeaturedAlbum />
+        <FeaturedFilm />
 
         {/* Category filter */}
         <div className={styles.filters} role="tablist" aria-label="Filter by category">

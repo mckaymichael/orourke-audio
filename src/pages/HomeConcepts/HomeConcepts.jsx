@@ -5,6 +5,10 @@ import ConceptSessionDeck from './ConceptSessionDeck.jsx'
 import ConceptEmberField from './ConceptEmberField.jsx'
 import ConceptPressureWave from './ConceptPressureWave.jsx'
 import ConceptTestSignal from './ConceptTestSignal.jsx'
+import FeatureStudies from './FeatureStudies.jsx'
+import HeroStudies from './HeroStudies.jsx'
+import ImmersiveStudies from './ImmersiveStudies.jsx'
+import ConceptGrainArchive from './ConceptGrainArchive.jsx'
 
 /**
  * HIDDEN PAGE: Homepage layout concepts.
@@ -95,6 +99,62 @@ export default function HomeConcepts() {
         </p>
       </div>
       <ConceptTestSignal />
+
+      <div className={styles.divider}>
+        <span className={styles.dividerTag}>Concept F</span>
+        <h2 className={styles.dividerTitle}>Grain Archive</h2>
+        <p className={styles.dividerDesc}>
+          Single full-bleed portrait photo washed in a red-to-black duotone
+          with heavy grain, floating pill navigation, and an oversized
+          Orbitron wordmark bleeding off the bottom edge of the frame onto
+          the page background. Minimal and name-forward rather than
+          feature-forward.
+        </p>
+      </div>
+      <ConceptGrainArchive />
+
+      <div className={styles.divider}>
+        <span className={styles.dividerTag}>Feature Studies</span>
+        <h2 className={styles.dividerTitle}>F01 to F10: Featuring the Work</h2>
+        <p className={styles.dividerDesc}>
+          Ten structurally distinct feature sections for showcasing Ryan's
+          work, each labelled inline. All of them use the approved button
+          directions: the dual-wipe red primary from Concept D and the
+          bracket secondary from Concept E. Entries marked Placeholder are
+          layout stand-ins for future portfolio items.
+        </p>
+      </div>
+      <FeatureStudies />
+
+      <div className={styles.divider}>
+        <span className={styles.dividerTag}>Hero Studies</span>
+        <h2 className={styles.dividerTitle}>H01 to H10: Hero Sections</h2>
+        <p className={styles.dividerDesc}>
+          Ten full hero sections built around the featured reel, each with
+          one distinct animation mechanic: curtain reveal, click expand,
+          pointer parallax, scroll-driven cinema, slide deck, shader veil,
+          typewriter entrance, orbiting meta chips, letterbox open, and a
+          morphing ripple portal. All motion is eased CSS driven by light
+          scroll and pointer glue, respects reduced motion, and uses the
+          approved primary and secondary buttons.
+        </p>
+      </div>
+      <HeroStudies />
+
+      <div className={styles.divider}>
+        <span className={styles.dividerTag}>Immersive Studies</span>
+        <h2 className={styles.dividerTitle}>I01 to I05: Curtain Reveal, Immersive Play</h2>
+        <p className={styles.dividerDesc}>
+          Built on H01. The video IS the hero background: a full-viewport
+          stage the reel fills from first paint, paused with an explicit
+          Play Video affordance. Pressing play never moves or resizes the
+          video; the page eases into alignment, the UI exits, scroll
+          locks, and controls fade in. Exit with the close control or
+          Escape. Five UI-exit choreographies: Slide Away, Focus Pull,
+          Cinema Drop, Curtain Sweep, and Zoom Dive.
+        </p>
+      </div>
+      <ImmersiveStudies />
     </div>
   )
 }

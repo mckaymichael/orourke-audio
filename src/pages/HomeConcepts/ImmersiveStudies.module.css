@@ -1,0 +1,467 @@
+/* Immersive Curtain Studies I01 through I05.
+
+   The video is the hero background: a 100vh stage the video fills from
+   first paint and never leaves. The takeover animates ONLY overlay
+   elements (UI out, scrim off, controls in) while the page eases into
+   alignment, so there is no geometry change and nothing to snap.
+
+   States on the section root: .inView (curtain parted), .open (playing,
+   immersed). Variant classes choreograph the UI exit. */
+
+.wrap {
+  background-color: var(--color-bg);
+}
+
+.studyTag {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding: var(--space-10) var(--container-pad) var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-mid-grey);
+}
+
+.studyId {
+  color: var(--color-primary);
+  border: 1px solid rgba(232, 24, 31, 0.4);
+  border-radius: var(--radius-sm);
+  padding: var(--space-1) var(--space-2);
+  margin-right: var(--space-2);
+}
+
+/* ── Stage and video ──────────────────────────────────────── */
+
+.stage {
+  --ox: 50%;
+  --oy: 40%;
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: filter 1200ms ease, transform 1400ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── Curtain panels (on-scroll reveal) ────────────────────── */
+
+.panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 51%;
+  background-color: var(--color-bg);
+  z-index: calc(var(--z-base) + 3);
+  transition: transform 1100ms cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.panelL { left: 0; }
+.panelR { right: 0; }
+
+.inView .panelL { transform: translateX(-101%); }
+.inView .panelR { transform: translateX(101%); }
+
+/* ── Hero UI ──────────────────────────────────────────────── */
+
+.ui {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-base);
+  display: flex;
+  align-items: flex-end;
+  background: linear-gradient(to top, rgba(18, 16, 16, 0.85), transparent 55%);
+  pointer-events: none;
+  transition: opacity 900ms ease;
+}
+
+.ui a {
+  pointer-events: auto;
+}
+
+.open .ui {
+  opacity: 0;
+}
+
+.open .ui a {
+  pointer-events: none;
+}
+
+.uiInner {
+  width: 100%;
+  padding: var(--space-12);
+  transition: transform 900ms cubic-bezier(0.55, 0, 0.55, 0.2),
+              opacity 900ms ease, filter 900ms ease;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  margin-bottom: var(--space-4);
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: clamp(var(--text-3xl), 5vw, var(--text-6xl));
+  line-height: 1.08;
+  margin-bottom: var(--space-4);
+}
+
+.wordWrap {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.word {
+  display: inline-block;
+  transform: translateY(110%);
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.inView .word { transform: translateY(0); }
+
+.wordWrap:nth-child(2) .word { transition-delay: 80ms; }
+.wordWrap:nth-child(3) .word { transition-delay: 160ms; }
+.wordWrap:nth-child(4) .word { transition-delay: 240ms; }
+.wordWrap:nth-child(5) .word { transition-delay: 320ms; }
+.wordWrap:nth-child(6) .word { transition-delay: 400ms; }
+.wordWrap:nth-child(7) .word { transition-delay: 480ms; }
+
+.btnRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+}
+
+/* Directional groups used by the Slide Away variant. */
+.uiLeft,
+.uiRight {
+  transition: transform 900ms cubic-bezier(0.55, 0, 0.55, 0.2), opacity 900ms ease;
+}
+
+/* ── Play affordance ──────────────────────────────────────── */
+
+.playBtn {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: calc(var(--z-base) + 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  background: none;
+  border: none;
+  color: var(--color-white);
+  opacity: 0;
+  transition: opacity 600ms ease 900ms, transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.inView .playBtn {
+  opacity: 1;
+}
+
+.open .playBtn {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 350ms ease;
+}
+
+.playBtn:hover,
+.playBtn:focus-visible {
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+.playBtn:active {
+  transform: translate(-50%, -50%) scale(0.97);
+}
+
+.playRing {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 92px;
+  height: 92px;
+  border: 1px solid rgba(247, 240, 241, 0.5);
+  border-radius: 50%;
+  background-color: rgba(18, 16, 16, 0.45);
+  backdrop-filter: blur(6px);
+  transition: border-color var(--transition), background-color var(--transition),
+              box-shadow var(--transition);
+}
+
+.playBtn:hover .playRing,
+.playBtn:focus-visible .playRing {
+  border-color: var(--color-primary);
+  background-color: rgba(232, 24, 31, 0.2);
+  box-shadow: 0 0 44px rgba(232, 24, 31, 0.4);
+}
+
+.playPulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(232, 24, 31, 0.6);
+  animation: playPulse 2.4s ease-out infinite;
+}
+
+@keyframes playPulse {
+  from { transform: scale(1); opacity: 1; }
+  to   { transform: scale(1.55); opacity: 0; }
+}
+
+.playTri {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 13px 0 13px 22px;
+  border-color: transparent transparent transparent var(--color-white);
+  margin-left: 5px;
+  transition: border-left-color var(--transition);
+}
+
+.playBtn:hover .playTri,
+.playBtn:focus-visible .playTri {
+  border-left-color: var(--color-primary);
+}
+
+.playLabel {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.playMeta {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-mid-grey);
+}
+
+/* ── Exit control ─────────────────────────────────────────── */
+
+.exitBtn {
+  position: absolute;
+  top: var(--space-6);
+  right: var(--space-6);
+  z-index: calc(var(--z-base) + 2);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  background-color: rgba(18, 16, 16, 0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  color: var(--color-white);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(-12px);
+  pointer-events: none;
+  transition: opacity 500ms ease, transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
+              border-color var(--transition), background-color var(--transition);
+}
+
+.open .exitBtn {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  transition-delay: 700ms, 700ms, 0ms, 0ms;
+}
+
+.exitBtn:hover,
+.exitBtn:focus-visible {
+  border-color: var(--color-primary);
+  background-color: rgba(232, 24, 31, 0.18);
+}
+
+.exitBtn:active {
+  transform: scale(0.95);
+}
+
+.exitGlyph {
+  position: relative;
+  width: 12px;
+  height: 12px;
+}
+
+.exitGlyph::before,
+.exitGlyph::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 12px;
+  height: 1.5px;
+  background-color: currentColor;
+}
+
+.exitGlyph::before { transform: rotate(45deg); }
+.exitGlyph::after  { transform: rotate(-45deg); }
+
+.exitHint {
+  color: var(--color-mid-grey);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 1px var(--space-2);
+}
+
+/* ══ I01 · Slide Away ═════════════════════════════════════════
+   Copy exits stage left, buttons exit stage right. The video does
+   not move; only the overlay leaves. */
+
+.vSlide.open .uiLeft {
+  transform: translateX(-115%);
+  opacity: 0;
+}
+
+.vSlide.open .uiRight {
+  transform: translateX(115%);
+  opacity: 0;
+}
+
+/* ══ I02 · Focus Pull ═════════════════════════════════════════
+   The UI shrinks and blurs toward the point you clicked, like the
+   lens racking focus onto the film behind it. */
+
+.vFocus .uiInner {
+  transform-origin: var(--ox) var(--oy);
+}
+
+.vFocus.open .uiInner {
+  transform: scale(0.8);
+  opacity: 0;
+  filter: blur(10px);
+}
+
+.vFocus.open .video {
+  filter: saturate(1.08) contrast(1.04);
+}
+
+/* ══ I03 · Cinema Drop ════════════════════════════════════════
+   The UI sinks below the frame while the picture ramps up from a
+   dimmed house-lights state. */
+
+.vCinema .video {
+  filter: brightness(0.72);
+}
+
+.vCinema.open .video {
+  filter: brightness(1);
+}
+
+.vCinema.open .uiInner {
+  transform: translateY(110px);
+  opacity: 0;
+  filter: blur(10px);
+}
+
+/* ══ I04 · Curtain Sweep ══════════════════════════════════════
+   The reveal curtains return: they sweep across the stage, carrying
+   the UI away underneath, then part again on the clean video. The
+   panels are overlays, so the video below never budges. */
+
+.vSweep.open .panelL {
+  animation: sweepL 1500ms cubic-bezier(0.76, 0, 0.24, 1) both;
+}
+
+.vSweep.open .panelR {
+  animation: sweepR 1500ms cubic-bezier(0.76, 0, 0.24, 1) both;
+}
+
+@keyframes sweepL {
+  0%   { transform: translateX(-101%); }
+  38%  { transform: translateX(0); }
+  58%  { transform: translateX(0); }
+  100% { transform: translateX(-101%); }
+}
+
+@keyframes sweepR {
+  0%   { transform: translateX(101%); }
+  38%  { transform: translateX(0); }
+  58%  { transform: translateX(0); }
+  100% { transform: translateX(101%); }
+}
+
+/* The UI vanishes while covered, between the keyframe midpoints. */
+.vSweep .ui {
+  transition: opacity 200ms ease;
+}
+
+.vSweep.open .ui {
+  transition-delay: 570ms;
+}
+
+/* ══ I05 · Zoom Dive ══════════════════════════════════════════
+   The UI zooms past the camera while the video eases slightly
+   forward, a dolly-in rendered purely with transforms. */
+
+.vZoom.open .video {
+  transform: scale(1.05);
+}
+
+.vZoom.open .uiInner {
+  transform: scale(1.2);
+  transform-origin: 50% 60%;
+  opacity: 0;
+  filter: blur(12px);
+}
+
+/* ── Reduced motion ───────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .panel { transform: translateX(101%); }
+  .panelL { transform: translateX(-101%); }
+  .word { transform: translateY(0); }
+  .playBtn { opacity: 1; }
+  .playPulse { animation: none; }
+  .vSweep.open .panelL,
+  .vSweep.open .panelR {
+    animation: none;
+  }
+  .vZoom.open .video {
+    transform: none;
+  }
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .uiInner {
+    padding: var(--space-6);
+  }
+
+  .playBtn {
+    top: 34%;
+  }
+
+  .playRing {
+    width: 72px;
+    height: 72px;
+  }
+
+  .exitBtn {
+    top: var(--space-4);
+    right: var(--space-4);
+  }
+}

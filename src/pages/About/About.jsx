@@ -11,11 +11,11 @@ export default function About() {
           <div className={styles.introGrid}>
             <div className={styles.introText}>
               <h1 className={styles.name}>Ryan O'Rourke</h1>
-              <p className={styles.role}>Composer for Games</p>
+              <p className={styles.role}>Video Game Composer</p>
 
               <p className={styles.bio}>
-                I make music and design sound. I have been producing, composing, and engineering audio
-                for nearly a decade, working across game sound, film post-production, and commercial music.
+                I write original music for games. For nearly a decade I have been producing, composing,
+                and engineering audio, and today that experience is focused entirely on scoring interactive worlds.
               </p>
               <p className={styles.bio}>
                 My background merges music production and audio engineering, meaning I bring a strong musical ear
@@ -87,15 +87,15 @@ export default function About() {
                 as well as a lead audio engineer at Bassunga Entertainment and Mindflow Records.
               </p>
               <p className={styles.bgBody}>
-                Over the last eight years, I have mixed, mastered, and engineered audio for independent films, records, and commercial releases. 
-                I bring strong sonic instincts, hands-on industry experience, and the technical vocabulary needed to collaborate effectively 
-                with development teams.
+                Over the last eight years, I have mixed, mastered, and engineered audio for independent films, records, and commercial releases.
+                That range gave me strong sonic instincts and hands-on industry experience, and I now put all of it toward one goal: writing
+                music that game development teams can build worlds around.
               </p>
             </div>
             <div className={styles.facts}>
               {[
                 { label: 'Education', value: 'LaSalle College Vancouver' },
-                { label: 'Focus', value: 'Game Composition' },
+                { label: 'Focus', value: 'Video Game Composer' },
                 { label: 'Availability', value: 'Available worldwide' },
               ].map(({ label, value }) => (
                 <div key={label} className={styles.fact}>
