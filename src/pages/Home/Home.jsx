@@ -1,9 +1,14 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import styles from './Home.module.css'
 import UnicornScene from '../../components/UnicornScene/UnicornScene.jsx'
 import { PrimaryBtn, SecondaryBtn } from '../../components/Buttons/Buttons.jsx'
 import videoThumbnail from '../../images/video-thumbnail.jpg'
+
+// Direct link to the hero reel video, set in .env as VITE_HERO_VIDEO_URL
+// (e.g. the file URL copied straight from the WP Media Library). No
+// filename convention to follow — just paste the link and it plays.
+const HERO_VIDEO_URL = import.meta.env.VITE_HERO_VIDEO_URL || null
 
 /**
  * HOME
@@ -74,6 +79,16 @@ function TiltCard({ label, title, body }) {
 }
 
 export default function Home() {
+  const heroVideoRef = useRef(null)
+  const [heroVideoPlaying, setHeroVideoPlaying] = useState(false)
+
+  function toggleHeroVideo() {
+    const el = heroVideoRef.current
+    if (!el) return
+    if (el.paused) el.play()
+    else el.pause()
+  }
+
   return (
     <div className={styles.page}>
 
@@ -94,16 +109,37 @@ export default function Home() {
             <div className={styles.heroReel}>
               <span className={styles.reelChip}>Featured Reel</span>
               <div className={styles.reelFrame}>
-                <video
-                  controls
-                  className={styles.reelVideo}
-                  preload="metadata"
-                  poster={videoThumbnail}
-                  aria-label="Ryan O'Rourke Featured Composition Reel"
-                >
-                  <source src="/video/featured-reel.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
+                {HERO_VIDEO_URL && (
+                  <>
+                    <video
+                      ref={heroVideoRef}
+                      controls
+                      className={styles.reelVideo}
+                      preload="metadata"
+                      poster={videoThumbnail}
+                      aria-label="Ryan O'Rourke Featured Composition Reel"
+                      onPlay={() => setHeroVideoPlaying(true)}
+                      onPause={() => setHeroVideoPlaying(false)}
+                    >
+                      <source src={HERO_VIDEO_URL} type="video/mp4" />
+                    </video>
+                    <button
+                      type="button"
+                      className={`${styles.reelPlayBtn} ${heroVideoPlaying ? styles.reelPlayBtnPlaying : ''}`}
+                      onClick={toggleHeroVideo}
+                      aria-label={heroVideoPlaying ? 'Pause featured reel' : 'Play featured reel'}
+                    >
+                      <span aria-hidden="true">{heroVideoPlaying ? '❚❚' : '►'}</span>
+                    </button>
+                  </>
+                )}
+                {!HERO_VIDEO_URL && (
+                  <img
+                    src={videoThumbnail}
+                    className={styles.reelVideo}
+                    alt="Ryan O'Rourke Featured Composition Reel"
+                  />
+                )}
               </div>
               <p className={styles.reelCaption}>Rooftops and Alleys · Trailer Composition</p>
             </div>
@@ -135,14 +171,14 @@ export default function Home() {
               <PrimaryBtn to="/contact">Contact Me</PrimaryBtn>
               <SecondaryBtn to="/portfolio">View My Work</SecondaryBtn>
             </div>
+
+            <div className={styles.scrollHint} aria-hidden="true">
+              <span className={styles.scrollDot} />
+            </div>
           </div>
 
           </div>
 
-        </div>
-
-        <div className={styles.scrollHint} aria-hidden="true">
-          <span className={styles.scrollDot} />
         </div>
       </section>
 

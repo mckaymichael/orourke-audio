@@ -12,12 +12,23 @@
 
 .hero {
   position: relative;
-  min-height: calc(100vh - 72px);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-block: var(--space-20) var(--space-20);
+  padding-block: var(--space-16) var(--space-16);
   overflow: hidden;
+}
+
+/* The "above the fold" height cap only makes sense once the two-column
+   layout kicks in (see .heroInner breakpoint below). Below that, content
+   stacks into a single column and needs to be free to grow to its natural
+   height — otherwise it gets clipped on tall/narrow viewports instead of
+   just scrolling, which is what we actually want there. */
+@media (min-width: 1025px) {
+  .hero {
+    min-height: calc(92vh - 72px);
+    max-height: calc(100vh - 72px);
+  }
 }
 
 /* Legibility scrim over the shader. */
@@ -57,6 +68,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  min-height: 0;
 }
 
 .eyebrow {
@@ -147,7 +159,6 @@
   justify-content: start;
   gap: var(--space-6);
   flex-wrap: wrap;
-  margin-top: auto;
 }
 
 /* ── Reel ─────────────────────────────────────────────────── */
@@ -173,6 +184,7 @@
 }
 
 .reelFrame {
+  position: relative;
   aspect-ratio: 16 / 9;
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -185,6 +197,49 @@
 .reelFrame:hover {
   transform: rotate(0deg);
   box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6), 0 0 40px rgba(232, 24, 31, 0.18);
+}
+
+/* Dedicated play/pause button, separate from the video's own surface.
+   Visible by default (inviting the click over the poster), fades out once
+   playing, and reappears on hover/focus so it's clear the video can be
+   paused too. */
+.reelPlayBtn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 1px solid rgba(247, 240, 241, 0.4);
+  background: rgba(18, 16, 16, 0.55);
+  color: var(--color-white);
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity var(--transition), transform var(--transition), background var(--transition);
+}
+
+.reelPlayBtn:hover {
+  background: var(--color-primary);
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.reelPlayBtn:focus-visible {
+  outline: 2px solid var(--color-white);
+  outline-offset: 3px;
+}
+
+.reelPlayBtnPlaying {
+  opacity: 0;
+}
+
+.reelFrame:hover .reelPlayBtnPlaying,
+.reelPlayBtnPlaying:focus-visible {
+  opacity: 1;
 }
 
 .reelVideo {
@@ -205,11 +260,15 @@
 
 /* ── Scroll indicator (Concept C) ─────────────────────────── */
 
+/* Pinned to the bottom-right of the right column, which — since the two
+   columns stretch to match each other's height — lines it up with the
+   bottom edge of the video reel on the left. */
 .scrollHint {
   position: relative;
   z-index: var(--z-base);
-  align-self: center;
-  margin-top: var(--space-12);
+  align-self: flex-end;
+  flex-shrink: 0;
+  margin-top: auto;
   width: 22px;
   height: 36px;
   border: 1px solid var(--color-border);
@@ -447,7 +506,6 @@
 
 @media (max-width: 640px) {
   .hero {
-    min-height: 80vh;
     padding-block: var(--space-16) var(--space-10);
   }
 }

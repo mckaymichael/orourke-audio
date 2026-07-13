@@ -12,7 +12,7 @@
 
 .headerBlock {
   background-color: var(--color-bg);
-  padding: var(--space-16) var(--container-pad) var(--space-10);
+  padding: var(--space-6) var(--container-pad) var(--space-4);
   max-width: var(--container-max);
   margin-inline: auto;
 }
