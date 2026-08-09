@@ -1,10 +1,15 @@
+/* The global Nav is fixed and roughly 72px tall, so the top padding clears
+   that height first and then adds the breathing room on top of it. Written
+   as a single padding-block declaration because a separate padding-top would
+   be overridden by the shorthand that follows it. */
 .page {
-  padding-top: 72px;
-  padding-block: var(--space-20) var(--space-24);
+  padding-block: calc(72px + var(--space-16)) var(--space-24);
 }
 
-.header {
-  padding-block: var(--space-16) var(--space-12);
+@media (max-width: 640px) {
+  .page {
+    padding-block: calc(72px + var(--space-10)) var(--space-20);
+  }
 }
 
 .filters {

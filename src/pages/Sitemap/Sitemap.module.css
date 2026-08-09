@@ -1,0 +1,47 @@
+.page {
+  padding-top: 72px;
+  padding-block: var(--space-20) var(--space-24);
+  min-height: 80vh;
+}
+
+.list {
+  margin-top: var(--space-12);
+  max-width: 640px;
+  border-top: 1px solid var(--color-border);
+}
+
+.item {
+  padding-block: var(--space-6);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.link {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--color-white);
+  transition: color var(--transition);
+}
+
+.link:hover {
+  color: var(--color-primary);
+}
+
+.description {
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--color-mid-grey);
+  line-height: 1.6;
+  max-width: 55ch;
+}
+
+.groupHeader {
+  margin-top: var(--space-20);
+}
+
+.groupNote {
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--color-mid-grey);
+  max-width: 55ch;
+}

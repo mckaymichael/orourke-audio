@@ -98,13 +98,30 @@ export default function Home() {
         <div className={styles.heroScrim} aria-hidden="true" />
         <div className={`${styles.heroContainer}`}>
 
-          <h1 className={styles.heroTitle}>
-            Your Game Deserves<br/>Music Built For It.
-          </h1>
-
           <div className={styles.heroInner}>
 
           <div className={styles.heroLeft}>
+
+            <h1 className={styles.heroTitle}>
+              Your Game Deserves<br/>Music Built For It.
+            </h1>
+
+            <p className={styles.heroSub}>
+              Video game composing is about letting people fall in love with your game. With nearly 10 years of composing under my belt, I can build you a soundtrack for your video game that truly immerses your gamers into an unforgettable experience.
+            </p>
+
+            <div className={styles.heroCtaRow}>
+              <PrimaryBtn to="/contact">Contact Me</PrimaryBtn>
+              <SecondaryBtn to="/portfolio">View My Work</SecondaryBtn>
+            </div>
+
+            <div className={styles.scrollHint} aria-hidden="true">
+              <span className={styles.scrollDot} />
+            </div>
+
+          </div>
+
+          <div className={styles.heroRight}>
 
             <div className={styles.heroReel}>
               <span className={styles.reelChip}>Featured Reel</span>
@@ -146,37 +163,6 @@ export default function Home() {
 
           </div>
 
-          <div className={styles.heroRight}>
-
-            <p className={styles.heroSub}>
-              I compose high-impact soundtracks across rock, orchestral, and electronic genres. Tailored to fit your gameplay mechanics, seamlessly loop-able, and mixed to professional industry standards.
-            </p>
-
-            <dl className={styles.heroKeywords}>
-              <div className={styles.keywordRow}>
-                <dt>Focus</dt>
-                <dd>Video Game Composing</dd>
-              </div>
-              <div className={styles.keywordRow}>
-                <dt>Contact</dt>
-                <dd>ryanorourke@gmail.com</dd>
-              </div>
-              <div className={styles.keywordRow}>
-                <dt>Availability</dt>
-                <dd>Vancouver, BC or Remote</dd>
-              </div>
-            </dl>
-
-            <div className={styles.heroCtaRow}>
-              <PrimaryBtn to="/contact">Contact Me</PrimaryBtn>
-              <SecondaryBtn to="/portfolio">View My Work</SecondaryBtn>
-            </div>
-
-            <div className={styles.scrollHint} aria-hidden="true">
-              <span className={styles.scrollDot} />
-            </div>
-          </div>
-
           </div>
 
         </div>
@@ -193,21 +179,39 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── Meet Ryan: photo + blurb ──────────────────────────── */}
+      <section className={styles.meetSection}>
+        <div className="container">
+          <div className={styles.meetGrid}>
+            <div className={styles.meetText}>
+              <p className="section-label">Who's Writing This</p>
+              <h2 className={styles.meetTitle}>Meet Ryan.</h2>
+              <p className={styles.meetBody}>
+                Ryan O'Rourke is a Vancouver-based video game composer with close to a decade in audio
+                production behind him. He writes across rock, orchestral, and electronic styles, and he
+                builds every score around how a game actually plays, not just how it sounds on its own.
+              </p>
+              <SecondaryBtn to="/about">Read His Story</SecondaryBtn>
+            </div>
+
+            <div className={styles.meetPhotoWrap}>
+              <div className={styles.meetPhoto} aria-hidden="true" />
+              <p className={styles.meetPhotoCaption}>Photo coming soon</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── Get in Touch: red dual-wipe CTA ──────────────────── */}
       <section className={styles.ctaSection}>
         <Link to="/contact" className={styles.giantCta}>
           <span className={`${styles.giantWipe} ${styles.giantWipeBlack}`} aria-hidden="true" />
           <span className={`${styles.giantWipe} ${styles.giantWipeRed}`} aria-hidden="true" />
           <span className={styles.giantLabel}>
-            Want to work together?
+            Let's work together
             <span className={styles.giantArrow} aria-hidden="true">&rarr;</span>
           </span>
         </Link>
-        <div className="container">
-          <p className={styles.ctaNote}>
-            Available remotely worldwide. Replies within 24 hours.
-          </p>
-        </div>
       </section>
 
     </div>

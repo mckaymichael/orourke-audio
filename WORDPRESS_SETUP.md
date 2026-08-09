@@ -96,10 +96,118 @@ Create a field group called **Portfolio Fields**, attach to Post Type = `portfol
 | Media Type | `media_type` | Select | Choices: `audio`, `video`. Default `audio`. Controls which player renders on the frontend. |
 | Audio URL | `audio_url` | File | Self-hosted MP3, uploaded to the Media Library. Used when Media Type = `audio`. Return format: File URL. |
 | Video URL | `video_url` | File | Self-hosted MP4, uploaded to the Media Library. Used when Media Type = `video`. Return format: File URL. |
+| Thumbnail | `thumbnail` | Image | Still image shown on the Work page monitor. **Required for audio-only pieces**, which have no video frame of their own. Return format: Image URL (an Image Array also works). Landscape images around 16:9 crop best. |
 | Description | `description` | Textarea | Short project description |
 | Year | `year` | Number | 4-digit year |
 | Category | `category` | Text | Display category label |
 | Featured | `featured` | True/False | Show on homepage if true |
+
+### Setting a Featured Image on a portfolio item
+
+The Work page monitor shows a still image for any piece that has no video of
+its own. The quickest way to supply one is the built in Featured Image,
+which needs no ACF configuration.
+
+1. Go to `http://orourke-audio.local/wp-admin`
+2. In the sidebar, click **Portfolio Items**, then click the item to edit
+3. In the right hand sidebar, open the **Post** tab and find the
+   **Featured image** panel. In the classic editor it sits in the lower right
+   column instead.
+4. Click **Set featured image**
+5. Either drag a file into the **Upload files** tab or pick one from the
+   **Media Library** tab
+6. Fill in the **Alt Text** box, since the frontend passes it through for
+   screen readers
+7. Click **Set featured image**, then click **Update** on the post
+
+Repeat for each item. Landscape images work best: the monitor crops to 16:9,
+so aim for 1920x1080 or at minimum 1280x720, saved as JPG or WebP.
+
+**If the Featured image panel is missing**, the post type is not declaring
+support for it:
+
+1. Go to **CPT UI → Add/Edit Post Types**
+2. Select `portfolio` from the dropdown
+3. Scroll to **Supports** and tick **Featured Image**
+4. Click **Save Post Type**
+
+**To confirm it worked**, open this URL in a browser:
+
+```
+http://orourke-audio.local/wp-json/wp/v2/portfolio?_fields=id,title,featured_media
+```
+
+Every item should now report a `featured_media` value other than `0`. The
+frontend reads the image through `_embed`, which `getPortfolioItems()` already
+requests, so no code change is needed.
+
+### Thumbnail set in wp-admin but the monitor still shows a red gradient
+
+This is the one failure that looks like a frontend bug and is not. WordPress
+refuses to serve an attachment through the **public** REST API when that
+attachment's parent post is trashed or unpublished, and an attachment's parent
+is simply whichever post it was first uploaded from. Upload an image while
+drafting one piece, trash that draft, then reuse the same image as the featured
+image on a different piece, and the API returns `rest_forbidden` to logged-out
+visitors while still looking perfectly correct in wp-admin.
+
+**Confirm it in one step.** Open a private/incognito window (so you are logged
+out) and visit:
+
+```
+http://orourke-audio.local/wp-json/wp/v2/portfolio?_embed
+```
+
+Find the item and look at `_embedded → wp:featuredmedia → [0]`. A healthy item
+has a `source_url`. A broken one has `"code": "rest_forbidden"`. The frontend
+also logs a `[portfolio]` console warning naming the item whenever it hits this.
+
+**Fix it.** Detach the image so it no longer depends on a dead parent:
+
+1. **Media → Library**, switch to list view
+2. Click the image, and look at the **Uploaded to** column
+3. If it points at a trashed or draft post, click **Detach**
+
+Detached images are served publicly regardless of what happens to any post.
+
+### Optional: make featured images immune to this permanently
+
+The detach step above cures one image. To stop the problem happening at all,
+have WordPress hand the frontend a plain URL that skips the attachment
+permission check entirely. Add this to a small site plugin (preferred) or to
+`wp-content/mu-plugins/orourke-rest-fields.php`, creating the folder if needed:
+
+```php
+<?php
+/**
+ * Plugin Name: O'Rourke Audio REST fields
+ * Description: Exposes the featured image URL directly on portfolio items.
+ */
+add_action('rest_api_init', function () {
+    register_rest_field('portfolio', 'featured_image_url', [
+        'get_callback' => function ($post) {
+            return get_the_post_thumbnail_url($post['id'], 'large') ?: null;
+        },
+        'schema' => ['type' => ['string', 'null']],
+    ]);
+});
+```
+
+`get_the_post_thumbnail_url()` reads the URL server side, where no attachment
+read permission applies, so the thumbnail is returned no matter what state its
+parent post is in. `posterFor()` in `usePortfolio.js` already prefers
+`featured_image_url` when it is present and falls back to `_embed` when it is
+not, so this is safe to add or remove at any time with no frontend change.
+
+> **Media note:** the playable file comes from the ACF fields alone
+> (`media_type` plus `audio_url` / `video_url`). There is no longer a fallback
+> to whatever MP3 or MP4 happens to be attached to the post: WordPress reparents
+> attachments on its own often enough that the guess silently played the wrong
+> file. Leave the fields empty and the item simply shows with no playable media.
+>
+> The still image is separate and does still fall back, in this order: the ACF
+> `thumbnail` field if set, then the featured image, then any image uploaded
+> into the post, then a brand-coloured gradient.
 
 > **Self-hosted video note:** WordPress's default upload limit (often 2–64MB depending on host) can block larger MP4s. Check **Media → Add New** for the "Maximum upload file size" shown there. If a file is too large, compress it (H.264, reasonable bitrate) before uploading, or raise the limit via the hosting environment's PHP settings (`upload_max_filesize`, `post_max_size`).
 

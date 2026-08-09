@@ -17,7 +17,7 @@ import styles from './RecordWall.module.css'
  *
  * Expects WordPress "portfolio" items (see usePortfolio hook / wp.js) with
  * ACF fields: audio_url, video_url, media_type, description, category, year.
- * Cover art comes from _embedded['wp:featuredmedia'] when present; falls
+ * Cover art comes from the resolved media.poster the hook attaches; falls
  * back to a generated brand-coloured gradient so a broken-image icon can
  * never appear.
  */
@@ -46,7 +46,11 @@ function fallbackCover(seed = 0) {
 }
 
 function coverSrc(item) {
-  return item._embedded?.['wp:featuredmedia']?.[0]?.source_url ?? null
+  // usePortfolio already resolves the still image into media.poster, working
+  // around the attachment-permission trap documented in posterFor(). Prefer
+  // it, and only read the raw embed when this component is handed items that
+  // did not come through the hook.
+  return item.media?.poster ?? item._embedded?.['wp:featuredmedia']?.[0]?.source_url ?? null
 }
 
 function Cover({ src, seed = 0, alt = '', className }) {

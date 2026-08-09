@@ -16,6 +16,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: var(--space-8);
+  padding-bottom: var(--space-8); /* 32px between nav and the border below */
 }
 
 .brand {
@@ -37,6 +38,14 @@
   font-style: italic;
   color: var(--color-mid-grey);
   line-height: 1.6;
+}
+
+.availability {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
 }
 
 .nav {
@@ -81,6 +90,17 @@
   font-family: var(--font-mono);
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.sitemapLink {
+  font-size: var(--text-xs);
+  color: var(--color-mid-grey);
+  letter-spacing: 0.04em;
+  transition: color var(--transition);
+}
+
+.sitemapLink:hover {
+  color: var(--color-white);
 }
 
 @media (max-width: 640px) {

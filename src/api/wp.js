@@ -51,6 +51,47 @@ export async function getPortfolioCategories() {
   return request('/wp/v2/portfolio_category?per_page=100')
 }
 
+/**
+ * Fetch the Media Library attachments belonging to a single portfolio item.
+ *
+ * WHY THIS EXISTS
+ * When an MP3 or MP4 is uploaded from inside a portfolio post, WordPress
+ * records that post as the attachment's parent. That makes the attachment a
+ * reliable source of playable media even before the ACF audio_url / video_url
+ * fields are filled in. resolveItemMedia() below prefers ACF when it is
+ * present and falls back to these attachments when it is not.
+ *
+ * Returns a trimmed list: [{ id, title, sourceUrl, mimeType }].
+ */
+export async function getPortfolioMedia(parentId) {
+  if (USE_MOCK) return []
+  const fields = 'id,title,source_url,mime_type'
+  const raw = await request(
+    `/wp/v2/media?parent=${parentId}&per_page=100&_fields=${fields}`
+  )
+  return raw.map(m => ({
+    id:        m.id,
+    title:     m.title?.rendered ?? '',
+    sourceUrl: m.source_url,
+    mimeType:  m.mime_type ?? '',
+  }))
+}
+
+/**
+ * Fetch a single Media Library attachment by ID.
+ *
+ * WHY THIS EXISTS
+ * ACF's "Show in REST API" toggle exposes File fields as the raw attachment
+ * ID (a number) rather than the resolved URL, regardless of the field's own
+ * Return Value setting in wp-admin. resolveAcfUrl() in usePortfolio.js uses
+ * this to turn that ID into an actual playable file URL.
+ */
+export async function getMediaById(id) {
+  if (USE_MOCK) return null
+  const fields = 'id,source_url,mime_type'
+  return request(`/wp/v2/media/${id}?_fields=${fields}`)
+}
+
 // ─── Services ─────────────────────────────────────────────────────────────────
 
 /**

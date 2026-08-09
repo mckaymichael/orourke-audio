@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { PrimaryBtn, SecondaryBtn } from '../../components/Buttons/Buttons.jsx'
 import styles from './About.module.css'
 
 export default function About() {
@@ -28,8 +28,8 @@ export default function About() {
               </p>
 
               <div className={styles.links}>
-                <Link to="/portfolio" className="btn btn-primary">Hear the Work</Link>
-                <Link to="/contact" className="btn btn-outline">Get in Touch</Link>
+                <PrimaryBtn to="/portfolio">Hear the Work</PrimaryBtn>
+                <SecondaryBtn to="/contact">Get in Touch</SecondaryBtn>
               </div>
             </div>
 
@@ -108,49 +108,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* ── Vancouver ───────────────────────── */}
-      <section className={`section ${styles.vancouver}`}>
-        <div className="container">
-          <div className={styles.vancouverHeader}>
-            <h2 className={styles.vancouverTitle}>Inspired by the Pacific Northwest</h2>
-            <p className={styles.vancouverBody}>
-              Vancouver is more than just where I live; it is a constant source of inspiration. 
-              The contrast between the quiet, mossy forests of the North Shore and the high-energy city streets 
-              shapes how I think about texture, space, and contrast in my music. 
-              Whether I am capturing field recordings in the rainforest, walking the downtown skyline, 
-              or listening to live shows in our local music venues, the unique pulse of the Pacific Northwest 
-              is embedded in every track I compose.
-            </p>
-          </div>
-          <div className={styles.vancouverGallery}>
-            <div className={styles.vancouverImgWrap}>
-              <img 
-                src="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=800&q=80" 
-                className={styles.vancouverImg} 
-                alt="Foggy Pacific Northwest forest trees" 
-              />
-              <span className={styles.vancouverCaption}>Forests</span>
-            </div>
-            <div className={styles.vancouverImgWrap}>
-              <img 
-                src="https://images.unsplash.com/photo-1559511260-66a654ae982a?auto=format&fit=crop&w=800&q=80" 
-                className={styles.vancouverImg} 
-                alt="Vancouver downtown cityscape skyline" 
-              />
-              <span className={styles.vancouverCaption}>Cityscape</span>
-            </div>
-            <div className={styles.vancouverImgWrap}>
-              <img 
-                src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80" 
-                className={styles.vancouverImg} 
-                alt="Live concert crowd and stage lights" 
-              />
-              <span className={styles.vancouverCaption}>Music Scene</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ── CTA ─────────────────────────────── */}
       <section className={`section ${styles.cta}`}>
         <div className="container">
@@ -160,7 +117,7 @@ export default function About() {
               Whether you want to give feedback on my work, talk about a project,
               or just connect, I am easy to reach and quick to respond.
             </p>
-            <Link to="/contact" className="btn btn-primary">Say Hello</Link>
+            <PrimaryBtn to="/contact">Say Hello</PrimaryBtn>
           </div>
         </div>
       </section>

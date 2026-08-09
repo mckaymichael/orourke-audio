@@ -1,24 +1,24 @@
 import { useState } from 'react'
 import { usePortfolio } from '../../hooks/usePortfolio.js'
-import FeaturedFilm from '../../components/FeaturedFilm/FeaturedFilm.jsx'
-import RecordWall from '../../components/RecordWall/RecordWall.jsx'
+import MixerConsole from '../../components/MixerConsole/MixerConsole.jsx'
 import styles from './Portfolio.module.css'
 
 /**
- * PORTFOLIO PAGE
+ * WORK PAGE
  *
- * - Fetches items and categories from WordPress REST API
- * - Category filter tabs at the top
- * - Portfolio pieces are presented as a "Record Wall": a turntable/video
- *   deck for the selected piece beside a crate of sleeves (see RecordWall
- *   component, adapted from Concept 02 at /lab/portfolio-concepts)
+ * Built on Concept 03 ("Mixer Console") from /lab/portfolio-concepts: a
+ * mixing-desk split with the monitor on the left and the work as a rack of
+ * channel strips on the right. Arming a channel loads that piece into the
+ * monitor and plays it for real.
  *
- * WordPress custom post type required: "portfolio"
- * WordPress custom taxonomy required: "portfolio_category"
- * ACF fields per item: audio_url, video_url, media_type, description, category, year
+ * Content comes from the WordPress "portfolio" custom post type. Each item's
+ * playable file is resolved by the usePortfolio hook, which reads the ACF
+ * media fields first and falls back to the item's own Media Library
+ * attachments. Category tabs only render once portfolio_category terms exist,
+ * so the page stays clean while the taxonomy is still empty.
  *
- * media_type is "audio" or "video". When "video", video_url (a self-hosted
- * MP4 in the WordPress Media Library) is rendered instead of the audio player.
+ * The page carries no heading or intro copy. The console is the first thing
+ * on screen, and the work speaks before any framing does.
  */
 export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState(null)
@@ -27,42 +27,45 @@ export default function Portfolio() {
   return (
     <div className={styles.page}>
       <div className="container">
-        <FeaturedFilm />
 
-        {/* Category filter */}
-        <div className={styles.filters} role="tablist" aria-label="Filter by category">
-          <button
-            className={`${styles.filterBtn} ${activeCategory === null ? styles.filterActive : ''}`}
-            onClick={() => setActiveCategory(null)}
-            role="tab"
-            aria-selected={activeCategory === null}
-          >
-            All
-          </button>
-          {categories.map(cat => (
+        {categories.length > 0 && (
+          <div className={styles.filters} role="tablist" aria-label="Filter by category">
             <button
-              key={cat.id}
-              className={`${styles.filterBtn} ${activeCategory === cat.slug ? styles.filterActive : ''}`}
-              onClick={() => setActiveCategory(cat.slug)}
+              className={`${styles.filterBtn} ${activeCategory === null ? styles.filterActive : ''}`}
+              onClick={() => setActiveCategory(null)}
               role="tab"
-              aria-selected={activeCategory === cat.slug}
+              aria-selected={activeCategory === null}
             >
-              {cat.name}
+              All
             </button>
-          ))}
-        </div>
+            {categories.map(cat => (
+              <button
+                key={cat.id}
+                className={`${styles.filterBtn} ${activeCategory === cat.slug ? styles.filterActive : ''}`}
+                onClick={() => setActiveCategory(cat.slug)}
+                role="tab"
+                aria-selected={activeCategory === cat.slug}
+              >
+                {cat.name}
+              </button>
+            ))}
+          </div>
+        )}
 
-        {/* States */}
-        {loading && <p className={styles.state}>Loading portfolio…</p>}
-        {error   && <p className={styles.state}>Failed to load portfolio. Please try again.</p>}
+        {loading && <p className={styles.state}>Loading the desk…</p>}
+        {error && (
+          <p className={styles.state}>
+            The work could not be loaded right now. Please try again.
+          </p>
+        )}
         {!loading && !error && items.length === 0 && (
-          <p className={styles.state}>No items in this category yet.</p>
+          <p className={styles.state}>No pieces in this category yet.</p>
         )}
 
-        {/* Portfolio pieces, Record Wall layout */}
         {!loading && !error && items.length > 0 && (
-          <RecordWall items={items} />
+          <MixerConsole items={items} />
         )}
+
       </div>
     </div>
   )

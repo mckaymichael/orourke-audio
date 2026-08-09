@@ -1,0 +1,21 @@
+// vite.config.js
+import { defineConfig } from "file:///sessions/gifted-happy-babbage/mnt/Term%20Project/O'Rourke%20Audio/website/node_modules/vite/dist/node/index.js";
+import react from "file:///sessions/gifted-happy-babbage/mnt/Term%20Project/O'Rourke%20Audio/website/node_modules/@vitejs/plugin-react/dist/index.js";
+var vite_config_default = defineConfig({
+  plugins: [react()],
+  server: {
+    host: "0.0.0.0",
+    port: 5173,
+    // Proxy WP REST API calls to avoid CORS issues during development
+    proxy: {
+      "/wp-json": {
+        target: "http://orourke-audio.local",
+        changeOrigin: true
+      }
+    }
+  }
+});
+export {
+  vite_config_default as default
+};
+//# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsidml0ZS5jb25maWcuanMiXSwKICAic291cmNlc0NvbnRlbnQiOiBbImNvbnN0IF9fdml0ZV9pbmplY3RlZF9vcmlnaW5hbF9kaXJuYW1lID0gXCIvc2Vzc2lvbnMvZ2lmdGVkLWhhcHB5LWJhYmJhZ2UvbW50L1Rlcm0gUHJvamVjdC9PJ1JvdXJrZSBBdWRpby93ZWJzaXRlXCI7Y29uc3QgX192aXRlX2luamVjdGVkX29yaWdpbmFsX2ZpbGVuYW1lID0gXCIvc2Vzc2lvbnMvZ2lmdGVkLWhhcHB5LWJhYmJhZ2UvbW50L1Rlcm0gUHJvamVjdC9PJ1JvdXJrZSBBdWRpby93ZWJzaXRlL3ZpdGUuY29uZmlnLmpzXCI7Y29uc3QgX192aXRlX2luamVjdGVkX29yaWdpbmFsX2ltcG9ydF9tZXRhX3VybCA9IFwiZmlsZTovLy9zZXNzaW9ucy9naWZ0ZWQtaGFwcHktYmFiYmFnZS9tbnQvVGVybSUyMFByb2plY3QvTydSb3Vya2UlMjBBdWRpby93ZWJzaXRlL3ZpdGUuY29uZmlnLmpzXCI7aW1wb3J0IHsgZGVmaW5lQ29uZmlnIH0gZnJvbSAndml0ZSdcbmltcG9ydCByZWFjdCBmcm9tICdAdml0ZWpzL3BsdWdpbi1yZWFjdCdcblxuZXhwb3J0IGRlZmF1bHQgZGVmaW5lQ29uZmlnKHtcbiAgcGx1Z2luczogW3JlYWN0KCldLFxuICBzZXJ2ZXI6IHtcbiAgICBob3N0OiAnMC4wLjAuMCcsXG4gICAgcG9ydDogNTE3MyxcbiAgICAvLyBQcm94eSBXUCBSRVNUIEFQSSBjYWxscyB0byBhdm9pZCBDT1JTIGlzc3VlcyBkdXJpbmcgZGV2ZWxvcG1lbnRcbiAgICBwcm94eToge1xuICAgICAgJy93cC1qc29uJzoge1xuICAgICAgICB0YXJnZXQ6ICdodHRwOi8vb3JvdXJrZS1hdWRpby5sb2NhbCcsXG4gICAgICAgIGNoYW5nZU9yaWdpbjogdHJ1ZSxcbiAgICAgIH0sXG4gICAgfSxcbiAgfSxcbn0pXG4iXSwKICAibWFwcGluZ3MiOiAiO0FBQXdZLFNBQVMsb0JBQW9CO0FBQ3JhLE9BQU8sV0FBVztBQUVsQixJQUFPLHNCQUFRLGFBQWE7QUFBQSxFQUMxQixTQUFTLENBQUMsTUFBTSxDQUFDO0FBQUEsRUFDakIsUUFBUTtBQUFBLElBQ04sTUFBTTtBQUFBLElBQ04sTUFBTTtBQUFBO0FBQUEsSUFFTixPQUFPO0FBQUEsTUFDTCxZQUFZO0FBQUEsUUFDVixRQUFRO0FBQUEsUUFDUixjQUFjO0FBQUEsTUFDaEI7QUFBQSxJQUNGO0FBQUEsRUFDRjtBQUNGLENBQUM7IiwKICAibmFtZXMiOiBbXQp9Cg==

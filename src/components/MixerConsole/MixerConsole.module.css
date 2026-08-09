@@ -1,0 +1,340 @@
+/* MIXER CONSOLE
+   Production adaptation of Concept 03 from /lab/portfolio-concepts.
+   Monitor on the left, channel-strip rack on the right. */
+
+.wrap {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+/* ── Monitor ──────────────────────────────────────────────── */
+.monitor {
+  position: sticky;
+  top: var(--space-16);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: #0d0c0c;
+}
+
+.monitorScreen {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+.monitorMedia {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(180deg, rgba(0,0,0,0.28) 0 1px, transparent 1px 3px);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.recDot {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  z-index: var(--z-base);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--color-mid-grey);
+  background: rgba(18,16,16,0.72);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  pointer-events: none;
+}
+
+.recDotLive {
+  color: var(--color-primary);
+}
+
+.noMedia {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: var(--space-6);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  background: rgba(18,16,16,0.55);
+}
+
+/* Overlay play button, matching the featured reel on the home page.
+   Sits clear of the native video control bar along the bottom. */
+.playBtn {
+  position: absolute;
+  right: var(--space-3);
+  top: var(--space-3);
+  z-index: var(--z-base);
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background: rgba(18,16,16,0.72);
+  color: var(--color-white);
+  font-size: var(--text-sm);
+  line-height: 1;
+  transition: background var(--transition), border-color var(--transition), transform var(--transition);
+}
+
+.playBtn:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  transform: scale(1.06);
+}
+
+.playBtnPlaying {
+  border-color: var(--color-primary);
+}
+
+/* ── Transport (audio channels) ───────────────────────────── */
+.transport {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--color-border);
+  flex-wrap: wrap;
+}
+
+.transportBtn,
+.skipBtn {
+  display: grid;
+  place-items: center;
+  min-width: 40px;
+  height: 40px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: none;
+  color: var(--color-white);
+  font-size: var(--text-sm);
+  transition: border-color var(--transition), color var(--transition), background var(--transition);
+}
+
+.transportBtn:hover,
+.skipBtn:hover:not(:disabled) {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.skipBtn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.groove {
+  flex: 1;
+  min-width: 120px;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(247,240,241,0.12);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.grooveFill {
+  display: block;
+  height: 100%;
+  background: var(--color-primary);
+  transition: width 120ms linear;
+}
+
+.time {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-mid-grey);
+  white-space: nowrap;
+}
+
+.volume {
+  width: 90px;
+  accent-color: var(--color-primary);
+}
+
+/* ── Monitor meta ─────────────────────────────────────────── */
+.monitorMeta {
+  padding: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+.monitorTitle {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-white);
+}
+
+.monitorSub {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-mid-grey);
+  margin-top: var(--space-1);
+}
+
+.monitorDesc {
+  font-size: var(--text-sm);
+  color: var(--color-mid-grey);
+  line-height: 1.7;
+  margin-top: var(--space-3);
+  max-width: 60ch;
+}
+
+/* ── Disclaimer ───────────────────────────────────────────── */
+.disclaimer {
+  padding: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--color-border);
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--color-mid-grey);
+}
+
+/* ── Channel rack ─────────────────────────────────────────── */
+.rack {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  overflow: hidden;
+}
+
+.rackHead {
+  display: grid;
+  grid-template-columns: 42px 1fr 96px 24px;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-mid-grey);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.rackList { list-style: none; }
+
+.channel {
+  display: grid;
+  grid-template-columns: 42px 1fr 96px 24px;
+  gap: var(--space-3);
+  align-items: center;
+  width: 100%;
+  padding: var(--space-4);
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+  transition: background var(--transition);
+}
+
+.rackList li:last-child .channel { border-bottom: none; }
+
+.channel:hover { background: var(--color-surface-2); }
+
+.channelOn { background: linear-gradient(90deg, rgba(232,24,31,0.14), transparent); }
+
+.chNum {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--color-primary);
+}
+
+.chInfo { display: flex; flex-direction: column; min-width: 0; }
+
+.chTitle {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-white);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chCat {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-mid-grey);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chMeter {
+  display: flex;
+  gap: 3px;
+  align-items: flex-end;
+  height: 22px;
+}
+
+.seg {
+  flex: 1;
+  height: 40%;
+  background: rgba(247,240,241,0.14);
+  border-radius: 1px;
+}
+
+.segArmed { background: rgba(232,103,108,0.35); }
+
+.segLive {
+  background: var(--color-secondary);
+  animation: segJump 700ms ease-in-out infinite alternate;
+}
+
+@keyframes segJump {
+  from { height: 25%; opacity: 0.5; }
+  to   { height: 100%; opacity: 1; }
+}
+
+.chFader {
+  position: relative;
+  width: 6px;
+  height: 34px;
+  margin-left: auto;
+  border-radius: 3px;
+  background: rgba(247,240,241,0.12);
+}
+
+.faderCap {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--color-white);
+  transition: bottom var(--transition);
+}
+
+.channelOn .faderCap { background: var(--color-primary); }
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .wrap { grid-template-columns: 1fr; }
+  .monitor { position: relative; top: 0; }
+}
+
+@media (max-width: 560px) {
+  .transport { gap: var(--space-2); }
+  .volume { width: 100%; }
+  .rackHead,
+  .channel { grid-template-columns: 34px 1fr 68px 20px; gap: var(--space-2); }
+}

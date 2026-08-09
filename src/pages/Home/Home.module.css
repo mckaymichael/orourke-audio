@@ -41,8 +41,9 @@
   pointer-events: none;
 }
 
-/* Title spans full width above; reel on the left, description/keywords/
-   CTAs on the right, both aligned to the same top edge. */
+/* Title, description, and CTAs are stacked in one left-aligned column;
+   the reel sits in the wider column on the right, both aligned to the
+   same top edge. */
 .heroContainer {
   position: relative;
   z-index: var(--z-base);
@@ -54,21 +55,21 @@
 
 .heroInner {
   display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
   gap: var(--space-16);
   align-items: stretch;
 }
 
 .heroLeft {
   text-align: left;
-}
-
-.heroRight {
-  text-align: left;
   display: flex;
   flex-direction: column;
   height: 100%;
   min-height: 0;
+}
+
+.heroRight {
+  text-align: left;
 }
 
 .eyebrow {
@@ -105,52 +106,17 @@
   color: var(--color-white);
   letter-spacing: -0.02em;
   max-width: 28ch;
-  margin: 0 auto var(--space-20);
-  text-align: center;
+  margin: 0 0 var(--space-8);
+  text-align: left;
 }
 
 .heroSub {
-  font-size: var(--text-base);
+  font-size: var(--text-xl);
   color: var(--color-white);
   opacity: 0.75;
   max-width: 42ch;
   line-height: 1.75;
   margin-bottom: var(--space-8);
-}
-
-.heroKeywords {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: var(--space-10);
-}
-
-.keywordRow {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-4);
-  padding-block: var(--space-3);
-  border-top: 1px solid var(--color-border);
-}
-
-.keywordRow:last-child {
-  border-bottom: 1px solid var(--color-border);
-}
-
-.keywordRow dt {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-secondary);
-}
-
-.keywordRow dd {
-  margin: 0;
-  font-size: var(--text-sm);
-  color: var(--color-white);
-  opacity: 0.85;
-  text-align: right;
 }
 
 .heroCtaRow {
@@ -260,13 +226,12 @@
 
 /* ── Scroll indicator (Concept C) ─────────────────────────── */
 
-/* Pinned to the bottom-right of the right column, which — since the two
-   columns stretch to match each other's height — lines it up with the
-   bottom edge of the video reel on the left. */
+/* Pinned to the bottom-left of the left (text) column, so it moves with
+   the copy instead of tracking the reel on the right. */
 .scrollHint {
   position: relative;
   z-index: var(--z-base);
-  align-self: flex-end;
+  align-self: flex-start;
   flex-shrink: 0;
   margin-top: auto;
   width: 22px;
@@ -322,8 +287,10 @@
   will-change: transform;
 }
 
-.tiltCard:hover {
-  border-color: rgba(232, 24, 31, 0.4);
+@media (hover: hover) and (pointer: fine) {
+  .tiltCard:hover {
+    border-color: rgba(232, 24, 31, 0.4);
+  }
 }
 
 .tiltGlare {
@@ -361,6 +328,70 @@
 .cardBody {
   color: var(--color-mid-grey);
   font-size: var(--text-base);
+}
+
+/* ── Meet Ryan: photo + blurb ──────────────────────────────── */
+
+.meetSection {
+  padding-block: var(--space-32);
+  border-top: 1px solid var(--color-border);
+}
+
+.meetGrid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: var(--space-16);
+  align-items: start;
+}
+
+.meetTitle {
+  font-family: var(--font-heading);
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--color-white);
+  margin-bottom: var(--space-6);
+}
+
+.meetBody {
+  color: var(--color-mid-grey);
+  line-height: 1.8;
+  max-width: 60ch;
+  margin-bottom: var(--space-8);
+}
+
+.meetPhotoWrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.meetPhoto {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.meetPhotoCaption {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-mid-grey);
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 768px) {
+  .meetGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .meetPhotoWrap {
+    order: -1;
+    max-width: 320px;
+    margin-inline: auto;
+  }
 }
 
 /* ── Get in Touch: red dual-wipe CTA (Concept D) ──────────── */
@@ -449,15 +480,6 @@
   transform: translateX(var(--space-3));
 }
 
-.ctaNote {
-  margin-top: var(--space-6);
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--color-mid-grey);
-}
-
 /* ── Responsive ───────────────────────────────────────────── */
 
 @media (max-width: 1024px) {
@@ -484,15 +506,6 @@
   .heroSub {
     max-width: none;
     margin-inline: auto;
-  }
-
-  .keywordRow {
-    justify-content: center;
-    gap: var(--space-6);
-  }
-
-  .keywordRow dd {
-    text-align: left;
   }
 
   .reelFrame {
