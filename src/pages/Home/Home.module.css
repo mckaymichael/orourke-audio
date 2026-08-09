@@ -60,10 +60,15 @@
   align-items: stretch;
 }
 
+/* gap guarantees at least 32px between every stacked item (title, sub,
+   CTA row, scroll hint) at any screen size. scrollHint's own
+   margin-top: auto still layers on top of that to push it further down
+   when the column has extra room to give, e.g. the tall desktop hero. */
 .heroLeft {
   text-align: left;
   display: flex;
   flex-direction: column;
+  gap: var(--space-8);
   height: 100%;
   min-height: 0;
 }
@@ -106,7 +111,7 @@
   color: var(--color-white);
   letter-spacing: -0.02em;
   max-width: 28ch;
-  margin: 0 0 var(--space-8);
+  margin: 0;
   text-align: left;
 }
 
@@ -116,7 +121,7 @@
   opacity: 0.75;
   max-width: 42ch;
   line-height: 1.75;
-  margin-bottom: var(--space-8);
+  margin: 0;
 }
 
 .heroCtaRow {
@@ -506,6 +511,10 @@
   .heroSub {
     max-width: none;
     margin-inline: auto;
+  }
+
+  .scrollHint {
+    align-self: center;
   }
 
   .reelFrame {
