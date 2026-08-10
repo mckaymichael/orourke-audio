@@ -2,7 +2,6 @@ import { useRef, useState } from 'react'
 import styles from './Home.module.css'
 import UnicornScene from '../../components/UnicornScene/UnicornScene.jsx'
 import { PrimaryBtn, SecondaryBtn } from '../../components/Buttons/Buttons.jsx'
-import videoThumbnail from '../../images/video-thumbnail.jpg'
 
 // Direct link to the hero reel video, set in .env as VITE_HERO_VIDEO_URL
 // (e.g. the file URL copied straight from the WP Media Library). No
@@ -75,7 +74,7 @@ export default function Home() {
                       controls
                       className={styles.reelVideo}
                       preload="metadata"
-                      poster={videoThumbnail}
+                      poster="/media/OTXO-Re-Composition.jpg"
                       aria-label="Ryan O'Rourke Featured Composition Reel"
                       onPlay={() => setHeroVideoPlaying(true)}
                       onPause={() => setHeroVideoPlaying(false)}
@@ -94,7 +93,7 @@ export default function Home() {
                 )}
                 {!HERO_VIDEO_URL && (
                   <img
-                    src={videoThumbnail}
+                    src="/media/OTXO-Re-Composition.jpg"
                     className={styles.reelVideo}
                     alt="Ryan O'Rourke Featured Composition Reel"
                   />
