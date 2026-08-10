@@ -9,7 +9,7 @@ import styles from './Sitemap.module.css'
  */
 const MAIN_PAGES = [
   { to: '/',          label: 'Home',    description: 'Featured reel, why work with Ryan, and a way to get in touch.' },
-  { to: '/portfolio', label: 'Work',    description: "Ryan's portfolio of game composition and sound design." },
+  { to: '/portfolio', label: 'Portfolio', description: "Ryan's portfolio of game composition and sound design." },
   { to: '/about',     label: 'About',   description: "Ryan's background, focus, and what he brings to a team." },
   { to: '/contact',   label: 'Contact', description: 'Project inquiry form and direct contact details.' },
 ]

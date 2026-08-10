@@ -14,7 +14,7 @@ export default function Footer() {
 
           <nav className={styles.nav} aria-label="Footer navigation">
             <span className={styles.navLabel}>Navigation</span>
-            <Link to="/portfolio">Work</Link>
+            <Link to="/portfolio">Portfolio</Link>
             <Link to="/about">About</Link>
             <Link to="/contact">Contact</Link>
           </nav>

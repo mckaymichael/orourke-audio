@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import styles from './BottomNav.module.css'
 
 const links = [
-  { to: '/portfolio', label: 'Work'    },
+  { to: '/portfolio', label: 'Portfolio' },
   { to: '/about',     label: 'About'   },
   { to: '/contact',   label: 'Contact' },
 ]

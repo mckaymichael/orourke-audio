@@ -3,7 +3,7 @@ import styles from './Nav.module.css'
 import logoSvg from '../../images/logo/Primary Logo - White.svg'
 
 const links = [
-  { to: '/portfolio', label: 'Work'    },
+  { to: '/portfolio', label: 'Portfolio' },
   { to: '/about',     label: 'About'   },
   { to: '/contact',   label: 'Contact' },
 ]
