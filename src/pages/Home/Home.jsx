@@ -117,9 +117,11 @@ export default function Home() {
             <div className={styles.meetText}>
               <h2 className={styles.meetTitle}>A Bit About Me</h2>
               <p className={styles.meetBody}>
-                I'm a Vancouver-based video game composer with close to a decade in audio production
-                behind me. I write across rock, orchestral, and electronic styles, and I build every
-                score around how a game actually plays, not just how it sounds on its own.
+                I started on piano at three, quit at five, and got hooked on electronic music at ten
+                because the idea that a machine could still make you feel something floored me. By
+                fourteen I was deep in trap music and taught myself the rest from there. Now I write
+                scores for games, chasing the same thing I always have: an undying passion for getting
+                it right.
               </p>
               <SecondaryBtn to="/about">More About Me</SecondaryBtn>
             </div>
