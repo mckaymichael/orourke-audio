@@ -33,6 +33,20 @@ export const mockPortfolioItems = [
     },
   },
   {
+    id: 4,
+    date: TODAY,
+    title: { rendered: 'Rooftops and Alleys: Trailer' },
+    excerpt: { rendered: '<p>Trailer composition written over the reveal trailer for Rooftops and Alleys, a parkour videogame, for portfolio demonstration.</p>' },
+    portfolio_category: [1],
+    acf: {
+      media_type: 'video',
+      video_url: '/media/rooftops-and-alleys-hero-reel.mp4',
+      thumbnail: '/media/rooftops-and-alleys-hero-reel.jpg',
+      category: 'Video',
+      featured: true,
+    },
+  },
+  {
     id: 1,
     date: TODAY,
     title: { rendered: 'Forever Winter' },
