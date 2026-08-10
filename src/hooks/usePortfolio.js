@@ -46,8 +46,9 @@ import {
 async function resolveAcfValue(value) {
   if (!value) return null
   if (typeof value === 'string' && value.trim()) {
-    // Already a usable URL (or something close enough to one).
-    if (/^https?:\/\//.test(value)) return value
+    // Already a usable URL, or a root-relative path to a static file
+    // (e.g. the /media/* fallback files used when VITE_USE_MOCK_DATA=true).
+    if (/^https?:\/\//.test(value) || value.startsWith('/')) return value
   }
   const id = typeof value === 'number' ? value : parseInt(value, 10)
   if (!Number.isFinite(id)) return null
