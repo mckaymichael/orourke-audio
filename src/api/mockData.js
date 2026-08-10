@@ -20,20 +20,6 @@ const TODAY = new Date().toISOString()
 
 export const mockPortfolioItems = [
   {
-    id: 1,
-    date: TODAY,
-    title: { rendered: 'Forever Winter' },
-    excerpt: { rendered: '<p>[Placeholder description — edit before presenting.]</p>' },
-    portfolio_category: [1],
-    acf: {
-      media_type: 'video',
-      video_url: '/media/Forever-Winter.mp4',
-      thumbnail: '/media/Forever-Winter.jpg',
-      category: 'Video',
-      featured: true,
-    },
-  },
-  {
     id: 2,
     date: TODAY,
     title: { rendered: 'OTXO: Re-Composition' },
@@ -43,6 +29,20 @@ export const mockPortfolioItems = [
       media_type: 'video',
       video_url: '/media/OTXO-Re-Composition.mp4',
       thumbnail: '/media/OTXO-Re-Composition.jpg',
+      category: 'Video',
+      featured: true,
+    },
+  },
+  {
+    id: 1,
+    date: TODAY,
+    title: { rendered: 'Forever Winter' },
+    excerpt: { rendered: '<p>[Placeholder description — edit before presenting.]</p>' },
+    portfolio_category: [1],
+    acf: {
+      media_type: 'video',
+      video_url: '/media/Forever-Winter.mp4',
+      thumbnail: '/media/Forever-Winter.jpg',
       category: 'Video',
       featured: true,
     },
