@@ -10,6 +10,7 @@ import Sitemap from './pages/Sitemap/Sitemap.jsx'
 import NotFound from './pages/NotFound.jsx'
 import HomeConcepts from './pages/HomeConcepts/HomeConcepts.jsx'
 import PortfolioConcepts from './pages/PortfolioConcepts/PortfolioConcepts.jsx'
+import BrandGuide from './pages/BrandGuide/BrandGuide.jsx'
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
           {/* Hidden - not linked from Nav/Footer/BottomNav, noindex via the pages themselves */}
           <Route path="/lab/home-concepts" element={<HomeConcepts />} />
           <Route path="/lab/portfolio-concepts" element={<PortfolioConcepts />} />
+          <Route path="/lab/brand-guide" element={<BrandGuide />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
