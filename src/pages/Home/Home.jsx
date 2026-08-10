@@ -100,7 +100,7 @@ export default function Home() {
                   />
                 )}
               </div>
-              <p className={styles.reelCaption}>Rooftops and Alleys · Trailer Composition</p>
+              <p className={styles.reelCaption}>Game footage shown for demonstration purposes only.</p>
             </div>
 
           </div>
