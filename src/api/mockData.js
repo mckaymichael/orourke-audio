@@ -60,34 +60,6 @@ export const mockPortfolioItems = [
       featured: true,
     },
   },
-  {
-    id: 4,
-    date: TODAY,
-    title: { rendered: 'Setlist: Jump MF Jump — Demo Idea 2' },
-    excerpt: { rendered: "<p>Demo idea written for Setlist's \"Jump MF Jump,\" for portfolio demonstration.</p>" },
-    portfolio_category: [2],
-    acf: {
-      media_type: 'audio',
-      audio_url: '/media/Setlist-JUMP-MF-JUMP-demo-idea-2.mp3',
-      thumbnail: '/media/Setlist-JUMP-MF-JUMP-demo-idea-2.jpg',
-      category: 'Audio',
-      featured: false,
-    },
-  },
-  {
-    id: 5,
-    date: TODAY,
-    title: { rendered: 'Setlist: Pause — Demo 1' },
-    excerpt: { rendered: "<p>Demo written for Setlist's \"Pause,\" for portfolio demonstration.</p>" },
-    portfolio_category: [2],
-    acf: {
-      media_type: 'audio',
-      audio_url: '/media/setlist-PAUSE-demo-1.mp3',
-      thumbnail: '/media/setlist-PAUSE-demo-1.jpg',
-      category: 'Audio',
-      featured: false,
-    },
-  },
 ]
 
 export const mockServices = [
