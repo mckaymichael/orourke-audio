@@ -6,10 +6,9 @@
 // NOTE: This file's portfolio items were switched to real static media as a
 // stopgap for the 2026-08-10 deadline, since the WordPress backend
 // (Local by Flywheel) isn't reachable from production and the Hostinger
-// migration is still in progress. Files live in `public/media/`. Titles,
-// categories, and descriptions below are placeholders inferred from the
-// filenames, edit them once there's time. See WORDPRESS_MIGRATION.md to
-// finish the real backend migration and retire this fallback.
+// migration is still in progress. Files live in `public/media/`. See
+// WORDPRESS_MIGRATION.md to finish the real backend migration and retire
+// this fallback.
 
 export const mockCategories = [
   { id: 1, name: 'Video', slug: 'video' },
@@ -37,7 +36,7 @@ export const mockPortfolioItems = [
     id: 1,
     date: TODAY,
     title: { rendered: 'Forever Winter' },
-    excerpt: { rendered: '<p>[Placeholder description — edit before presenting.]</p>' },
+    excerpt: { rendered: '<p>Original composition written over an existing scene from Forever Winter, for portfolio demonstration.</p>' },
     portfolio_category: [1],
     acf: {
       media_type: 'video',
@@ -51,7 +50,7 @@ export const mockPortfolioItems = [
     id: 3,
     date: TODAY,
     title: { rendered: 'ILL: Soundtrack Redesign — Demo 1' },
-    excerpt: { rendered: '<p>Soundtrack redesign demo. [Placeholder description — edit before presenting.]</p>' },
+    excerpt: { rendered: '<p>Soundtrack redesign demo for ILL, written for portfolio demonstration.</p>' },
     portfolio_category: [2],
     acf: {
       media_type: 'audio',
@@ -65,7 +64,7 @@ export const mockPortfolioItems = [
     id: 4,
     date: TODAY,
     title: { rendered: 'Setlist: Jump MF Jump — Demo Idea 2' },
-    excerpt: { rendered: '<p>[Placeholder description — edit before presenting.]</p>' },
+    excerpt: { rendered: "<p>Demo idea written for Setlist's \"Jump MF Jump,\" for portfolio demonstration.</p>" },
     portfolio_category: [2],
     acf: {
       media_type: 'audio',
@@ -79,7 +78,7 @@ export const mockPortfolioItems = [
     id: 5,
     date: TODAY,
     title: { rendered: 'Setlist: Pause — Demo 1' },
-    excerpt: { rendered: '<p>[Placeholder description — edit before presenting.]</p>' },
+    excerpt: { rendered: "<p>Demo written for Setlist's \"Pause,\" for portfolio demonstration.</p>" },
     portfolio_category: [2],
     acf: {
       media_type: 'audio',

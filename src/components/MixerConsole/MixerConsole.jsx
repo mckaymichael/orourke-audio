@@ -296,12 +296,6 @@ export default function MixerConsole({ items }) {
           </p>
           {desc && <p className={styles.monitorDesc}>{desc}</p>}
         </div>
-
-        <p className={styles.disclaimer}>
-          All music composed, recorded, and mixed by Ryan O&rsquo;Rourke. Game
-          footage remains the property of its respective studios and appears
-          here only to demonstrate the scoring work.
-        </p>
       </div>
 
       {/* ── Channel rack ──────────────────────────────────────── */}

@@ -34,7 +34,7 @@ export default function Nav() {
         </nav>
 
         <NavLink to="/contact" className={`btn btn-primary ${styles.cta}`}>
-          Get in Touch
+          Let's Work Together
         </NavLink>
       </div>
     </header>

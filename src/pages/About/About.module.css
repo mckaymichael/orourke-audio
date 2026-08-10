@@ -2,8 +2,74 @@
   padding-top: 72px;
 }
 
+/* ── Full-bleed portrait ──────────────────── */
+/* Pinned behind everything below it; the sections that follow are given
+   opaque backgrounds and lifted into their own stacking layer so they
+   slide up and cover the image as the page scrolls, rather than the
+   image scrolling away with the rest of the content. */
+.splash {
+  position: fixed;
+  top: 72px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 72px);
+  z-index: var(--z-base);
+}
+
+.splashImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  display: block;
+}
+
+.splashScrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10, 8, 8, 0.75) 0%, rgba(10, 8, 8, 0.1) 45%, transparent 70%);
+  pointer-events: none;
+}
+
+.splashName {
+  position: absolute;
+  left: var(--space-8);
+  bottom: var(--space-12);
+  right: var(--space-8);
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 9vw, 7rem);
+  font-weight: 900;
+  line-height: 1;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .splash {
+    height: 70vh;
+  }
+
+  .splashName {
+    font-size: clamp(2.5rem, 12vw, 4rem);
+    bottom: var(--space-8);
+  }
+}
+
 /* ── Intro ────────────────────────────────── */
-.intro {}
+.intro {
+  position: relative;
+  z-index: calc(var(--z-base) + 1);
+  background-color: var(--color-bg);
+  margin-top: calc(100vh - 72px);
+}
+
+@media (max-width: 768px) {
+  .intro {
+    margin-top: 70vh;
+  }
+}
 
 .introGrid {
   display: grid;
@@ -12,23 +78,6 @@
   align-items: start;
 }
 
-.name {
-  font-family: var(--font-heading);
-  font-size: var(--text-5xl);
-  font-weight: 900;
-  color: var(--color-white);
-  line-height: 1.1;
-  margin-bottom: var(--space-2);
-}
-
-.role {
-  font-family: var(--font-mono);
-  font-size: var(--text-sm);
-  color: var(--color-secondary);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: var(--space-8);
-}
 
 .bio {
   color: var(--color-mid-grey);
@@ -54,20 +103,16 @@
 .photo {
   width: 100%;
   aspect-ratio: 3 / 4;
+  object-fit: cover;
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
 }
 
-.photoCaption {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  color: var(--color-mid-grey);
-  letter-spacing: 0.05em;
-}
-
 /* ── What he brings ───────────────────────── */
 .brings {
+  position: relative;
+  z-index: calc(var(--z-base) + 1);
   background-color: var(--color-surface);
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
@@ -101,11 +146,15 @@
 }
 
 /* ── Background ───────────────────────────── */
-.background {}
+.background {
+  position: relative;
+  z-index: calc(var(--z-base) + 1);
+  background-color: var(--color-bg);
+}
 
 .bgGrid {
   display: grid;
-  grid-template-columns: 1fr 280px;
+  grid-template-columns: 480px 1fr;
   gap: var(--space-16);
   align-items: start;
 }
@@ -117,60 +166,51 @@
   max-width: 60ch;
 }
 
-.facts {
+.bgPhotoWrap {
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
-  padding-top: var(--space-12);
+  align-items: center;
 }
 
-.fact {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-  padding-bottom: var(--space-6);
-  border-bottom: 1px solid var(--color-border);
-}
-
-.fact:last-child {
-  border-bottom: none;
-}
-
-.factLabel {
-  font-size: var(--text-xs);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-mid-grey);
-}
-
-.factValue {
-  font-size: var(--text-base);
-  color: var(--color-white);
-  font-weight: 500;
-}
-
-/* ── CTA ──────────────────────────────────── */
-.cta {
+.bgPhoto {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
   background-color: var(--color-surface);
-  border-top: 1px solid var(--color-border);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
 }
 
-.ctaInner {
-  max-width: 560px;
+/* ── Get in Touch: full-bleed photo CTA ─────────────────────── */
+.cta {
+  position: relative;
+  z-index: calc(var(--z-base) + 1);
+  height: 60vh;
+  min-height: 420px;
+  overflow: hidden;
 }
 
-.ctaTitle {
-  font-family: var(--font-heading);
-  font-size: var(--text-4xl);
-  font-weight: 700;
-  color: var(--color-white);
-  margin-bottom: var(--space-4);
+.ctaPhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
 }
 
-.ctaBody {
-  color: var(--color-mid-grey);
-  line-height: 1.8;
-  margin-bottom: var(--space-8);
+.ctaScrim {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(10, 8, 8, 0.15) 0%, rgba(10, 8, 8, 0.65) 100%);
+  pointer-events: none;
+}
+
+.ctaCenter {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ── Responsive ───────────────────────────── */

@@ -199,14 +199,6 @@
 }
 
 /* ── Disclaimer ───────────────────────────────────────────── */
-.disclaimer {
-  padding: var(--space-3) var(--space-4);
-  border-top: 1px solid var(--color-border);
-  font-size: 11px;
-  line-height: 1.6;
-  color: var(--color-mid-grey);
-}
-
 /* ── Channel rack ─────────────────────────────────────────── */
 .rack {
   border: 1px solid var(--color-border);

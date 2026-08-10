@@ -5,44 +5,62 @@ export default function About() {
   return (
     <div className={styles.page}>
 
+      {/* ── Full-bleed portrait ─────────────── */}
+      <section className={styles.splash}>
+        <img
+          src="/media/ryan-headshots/For-Web-22.jpg"
+          alt="Ryan O'Rourke"
+          className={styles.splashImage}
+        />
+        <div className={styles.splashScrim} aria-hidden="true" />
+        <h1 className={styles.splashName}>Ryan O'Rourke</h1>
+      </section>
+
       {/* ── Intro ──────────────────────────── */}
       <section className={`section ${styles.intro}`}>
         <div className="container">
           <div className={styles.introGrid}>
             <div className={styles.introText}>
-              <h1 className={styles.name}>Ryan O'Rourke</h1>
-              <p className={styles.role}>Video Game Composer</p>
+              <h2 className="section-title">About me</h2>
 
               <p className={styles.bio}>
-                I write original music for games. For nearly a decade I have been producing, composing,
-                and engineering audio, and today that experience is focused entirely on scoring interactive worlds.
+                I started learning piano at age 3. I stopped at age 5. I didn't feel like I was getting
+                "good enough," at least not in the traditional sense. At age 10 I organically discovered
+                electronic music and became absolutely enamoured by the idea that machines, with human
+                assistance, could communicate emotion.
               </p>
               <p className={styles.bio}>
-                My background merges music production and audio engineering, meaning I bring a strong musical ear
-                alongside technical grounding. I think in terms of feel, tension, and emotional arc, and I construct
-                assets that drop seamlessly into developer pipelines.
+                Fast-forward to me at age 14. I had been hooked on trap music for the entirety of my
+                early secondary-school years, and I thought, "why can't I do this?" And so I did. Over
+                the rest of my high-school years, I taught myself the basic nuances of rhythm and
+                composition, but I wanted to take it a step further.
               </p>
               <p className={styles.bio}>
-                I graduated with a Professional Recording Arts Diploma from LaSalle College Vancouver. With a solid foundation
-                in mixing, mastering, and sound design, I am focused on creating interactive, immersive soundtracks for games.
+                Upon graduating, I went to LaSalle College Vancouver to fully embrace every aspect of
+                music and sound, and so I did. Approximately 6 years post-graduation, I can finally say
+                I understand enough of every avenue of music to compete with my peers. I possess an
+                undying passion, a feverish obsession, and an insatiable desire for near-perfection.
+                And, if you're willing to allow me to try, I shall achieve it. Cheers!
               </p>
 
               <div className={styles.links}>
                 <PrimaryBtn to="/portfolio">Hear the Work</PrimaryBtn>
-                <SecondaryBtn to="/contact">Get in Touch</SecondaryBtn>
+                <SecondaryBtn to="/contact">Let's Work Together</SecondaryBtn>
               </div>
             </div>
 
-            {/* Photo placeholder */}
             <div className={styles.photoWrap}>
-              <div className={styles.photo} aria-hidden="true" />
-              <p className={styles.photoCaption}>Photo coming soon</p>
+              <img
+                src="/media/ryan-headshots/For-Web-6.jpg"
+                alt="Ryan O'Rourke"
+                className={styles.photo}
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── What I Bring ──────────────────── */}
+      {/* ── What I Bring (hidden for now) ────
       <section className={`section ${styles.brings}`}>
         <div className="container">
           <h2 className="section-title">Built on music.<br />Learning games.</h2>
@@ -51,19 +69,19 @@ export default function About() {
             {[
               {
                 label: 'Composition',
-                body: 'Original music across a wide range of moods and genres. I write from scratch for every project and do not reach for stock libraries.',
+                body: 'Everything is written from scratch. No stock libraries, no shortcuts. I would rather build the sound a project actually needs.',
               },
               {
                 label: 'Range',
-                body: 'Orchestral, ambient, electronic, hybrid. I am comfortable moving across styles and am used to adapting to a brief.',
+                body: 'Orchestral, ambient, electronic, hybrid, whatever the brief calls for. I taught myself across genres and I am still doing it.',
               },
               {
                 label: 'Collaboration',
-                body: 'I take feedback well, communicate clearly, and do not disappear mid-project. Working with me is low-friction.',
+                body: 'I take feedback well, I communicate, and I do not go quiet mid-project. Working with me should feel easy.',
               },
               {
                 label: 'Work ethic',
-                body: 'I am actively building. If there is something I do not know yet, I go and learn it.',
+                body: 'An undying passion for this, a feverish obsession with getting it right, and an insatiable want for near-perfection. Give me the chance and I will get there.',
               },
             ].map(({ label, body }) => (
               <div key={label} className={styles.bringCard}>
@@ -74,51 +92,48 @@ export default function About() {
           </div>
         </div>
       </section>
+      ──────────────────────────────────── */}
 
       {/* ── Background ──────────────────────── */}
       <section className={`section ${styles.background}`}>
         <div className="container">
           <div className={styles.bgGrid}>
-            <div>
-              <h2 className="section-title">Where I come from.</h2>
-              <p className={styles.bgBody}>
-                I graduated with a Professional Recording Arts Diploma from LaSalle College Vancouver, where I built a deep
-                foundation in recording technology and production. Since then, I have spent years as a freelance producer and composer,
-                as well as a lead audio engineer at Bassunga Entertainment and Mindflow Records.
-              </p>
-              <p className={styles.bgBody}>
-                Over the last eight years, I have mixed, mastered, and engineered audio for independent films, records, and commercial releases.
-                That range gave me strong sonic instincts and hands-on industry experience, and I now put all of it toward one goal: writing
-                music that game development teams can build worlds around.
-              </p>
+            <div className={styles.bgPhotoWrap}>
+              <img
+                src="/media/ryan-headshots/For-Web-20.jpg"
+                alt="Ryan O'Rourke"
+                className={styles.bgPhoto}
+              />
             </div>
-            <div className={styles.facts}>
-              {[
-                { label: 'Education', value: 'LaSalle College Vancouver' },
-                { label: 'Focus', value: 'Video Game Composer' },
-                { label: 'Availability', value: 'Available worldwide' },
-              ].map(({ label, value }) => (
-                <div key={label} className={styles.fact}>
-                  <span className={`font-mono ${styles.factLabel}`}>{label}</span>
-                  <span className={styles.factValue}>{value}</span>
-                </div>
-              ))}
+            <div>
+              <h2 className="section-title">Education and Experience.</h2>
+              <p className={styles.bgBody}>
+                I went to LaSalle College Vancouver to get a Professional Recording Arts Diploma and to
+                understand the craft properly, top to bottom. Since then I have worked as a freelance
+                producer and composer, and as a lead audio engineer at Bassunga Entertainment and Mindflow
+                Records.
+              </p>
+              <p className={styles.bgBody}>
+                About six years out of school now, and I can finally say I understand enough of every
+                avenue of music to stand next to my peers. I have mixed, mastered, and engineered audio
+                for independent films, records, and commercial releases, and all of it points at one
+                thing: writing music that game development teams can build worlds around.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── CTA ─────────────────────────────── */}
-      <section className={`section ${styles.cta}`}>
-        <div className="container">
-          <div className={styles.ctaInner}>
-            <h2 className={styles.ctaTitle}>Want to talk?</h2>
-            <p className={styles.ctaBody}>
-              Whether you want to give feedback on my work, talk about a project,
-              or just connect, I am easy to reach and quick to respond.
-            </p>
-            <PrimaryBtn to="/contact">Say Hello</PrimaryBtn>
-          </div>
+      {/* ── Get in Touch: full-bleed photo CTA ─────────────────── */}
+      <section className={styles.cta}>
+        <img
+          src="/media/ryan-headshots/For-Web-18.jpg"
+          alt="Ryan O'Rourke"
+          className={styles.ctaPhoto}
+        />
+        <div className={styles.ctaScrim} aria-hidden="true" />
+        <div className={styles.ctaCenter}>
+          <PrimaryBtn to="/contact">Let's Work Together</PrimaryBtn>
         </div>
       </section>
 

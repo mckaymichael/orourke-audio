@@ -261,80 +261,6 @@
   60%      { transform: translateY(10px); opacity: 0.2; }
 }
 
-/* ── Why Ryan: tilt cards (Concept D) ─────────────────────── */
-
-.why {
-  padding-block: var(--space-32);
-  border-top: 1px solid var(--color-border);
-}
-
-.cardGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-6);
-  perspective: 1000px;
-}
-
-.tiltCard {
-  --rx: 0deg;
-  --ry: 0deg;
-  --gx: 50%;
-  --gy: 50%;
-  position: relative;
-  overflow: hidden;
-  padding: var(--space-8);
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  transform: rotateX(var(--rx)) rotateY(var(--ry));
-  transform-style: preserve-3d;
-  transition: transform 200ms ease, border-color var(--transition);
-  will-change: transform;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .tiltCard:hover {
-    border-color: rgba(232, 24, 31, 0.4);
-  }
-}
-
-.tiltGlare {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    circle 220px at var(--gx) var(--gy),
-    rgba(247, 240, 241, 0.08),
-    transparent
-  );
-  opacity: 0;
-  transition: opacity var(--transition);
-  pointer-events: none;
-}
-
-.tiltCard:hover .tiltGlare {
-  opacity: 1;
-}
-
-.cardLabel {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: var(--text-sm);
-  color: var(--color-secondary);
-  margin-bottom: var(--space-4);
-}
-
-.cardTitle {
-  font-family: var(--font-heading);
-  font-size: var(--text-xl);
-  font-weight: 700;
-  margin-bottom: var(--space-4);
-}
-
-.cardBody {
-  color: var(--color-mid-grey);
-  font-size: var(--text-base);
-}
-
 /* ── Meet Ryan: photo + blurb ──────────────────────────────── */
 
 .meetSection {
@@ -344,7 +270,7 @@
 
 .meetGrid {
   display: grid;
-  grid-template-columns: 1fr 320px;
+  grid-template-columns: 1fr 420px;
   gap: var(--space-16);
   align-items: start;
 }
@@ -374,17 +300,11 @@
 
 .meetPhoto {
   width: 100%;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-}
-
-.meetPhotoCaption {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  color: var(--color-mid-grey);
-  letter-spacing: 0.05em;
 }
 
 @media (max-width: 768px) {
@@ -394,95 +314,42 @@
 
   .meetPhotoWrap {
     order: -1;
-    max-width: 320px;
+    max-width: 420px;
     margin-inline: auto;
   }
 }
 
-/* ── Get in Touch: red dual-wipe CTA (Concept D) ──────────── */
+/* ── Get in Touch: full-bleed photo CTA ─────────────────────── */
 
 .ctaSection {
-  --wipe-delay: 120ms;
-  --wipe-ease: cubic-bezier(0.22, 1, 0.36, 1);
-  padding-block: var(--space-24) var(--space-32);
-  border-top: 1px solid var(--color-border);
-}
-
-.ctaLabel {
-  margin-bottom: var(--space-8);
-}
-
-/* Red at rest, like the primary button, with the same dual wipe:
-   black slides up first, red follows after the stagger. */
-.giantCta {
   position: relative;
-  display: block;
+  height: 60vh;
+  min-height: 420px;
+  border-top: 1px solid var(--color-border);
   overflow: hidden;
-  background-color: var(--color-primary);
-  border-block: 1px solid var(--color-border);
-  padding: var(--space-12) var(--container-pad);
 }
 
-.giantWipe {
+.ctaPhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+}
+
+.ctaScrim {
   position: absolute;
   inset: 0;
-  transform: translateY(101%);
+  background: radial-gradient(ellipse at center, rgba(10, 8, 8, 0.15) 0%, rgba(10, 8, 8, 0.65) 100%);
   pointer-events: none;
 }
 
-.giantWipeBlack {
-  background-color: var(--color-bg);
-  transition: transform 450ms var(--wipe-ease);
-}
-
-.giantWipeRed {
-  background-color: var(--color-primary);
-  transition: transform 450ms var(--wipe-ease);
-}
-
-.giantCta:hover .giantWipe,
-.giantCta:focus-visible .giantWipe {
-  transform: translateY(0);
-}
-
-.giantCta:hover .giantWipeRed,
-.giantCta:focus-visible .giantWipeRed {
-  transition-delay: var(--wipe-delay);
-}
-
-.giantLabel {
-  position: relative;
-  z-index: var(--z-base);
+.ctaCenter {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--space-6);
-  max-width: var(--container-max);
-  margin-inline: auto;
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: clamp(var(--text-2xl), 4vw, var(--text-5xl));
-  color: var(--color-white);
-  transition: transform 400ms var(--wipe-ease);
-}
-
-.giantCta:hover .giantLabel,
-.giantCta:focus-visible .giantLabel {
-  transform: translateX(var(--space-4));
-}
-
-.giantCta:active .giantLabel {
-  transform: translateX(var(--space-2)) scale(0.99);
-}
-
-.giantArrow {
-  font-family: var(--font-body);
-  transition: transform 400ms var(--wipe-ease);
-}
-
-.giantCta:hover .giantArrow,
-.giantCta:focus-visible .giantArrow {
-  transform: translateX(var(--space-3));
+  justify-content: center;
 }
 
 /* ── Responsive ───────────────────────────────────────────── */
@@ -519,10 +386,6 @@
 
   .reelFrame {
     transform: none;
-  }
-
-  .cardGrid {
-    grid-template-columns: 1fr;
   }
 }
 
